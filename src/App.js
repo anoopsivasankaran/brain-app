@@ -2,7 +2,6 @@ import './App.scss';
 import {
     createHashRouter,
     RouterProvider,
-    useLocation
   } from "react-router-dom";
 import Home from './Home';
 import Game from './Game';
