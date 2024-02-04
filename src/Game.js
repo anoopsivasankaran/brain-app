@@ -6,7 +6,7 @@ import {
   } from "react-router-dom";
 import FinalResults from "./FinalResults";
 
-const NUM_OF_QUES = 2;
+const NUM_OF_QUES = 10;
 
 // both inclusive
 function getRandomInt(min, max) {
@@ -59,9 +59,9 @@ function getTimeout(difficulty) {
         case 'easy':
             return 0;
         case 'medium':
-            return 10;
+            return 20;
         case 'hard':
-            return 5;
+            return 10;
         default:
             return 0;
     }
@@ -115,7 +115,7 @@ export default function Game() {
             }
         }
         
-     }, [timeout]);
+     }, [submitted, timeout]);
 
     if(allResult.length >= NUM_OF_QUES) {
         return (
