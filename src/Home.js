@@ -22,11 +22,11 @@ export default function Home() {
         <div className="Home">
             <div className="home-grid">
                 <input type="radio" name="prob_type" id="add" value="add" checked={probType === 'add'} onChange={onChangeProb}/>
-                <label htmlFor="add">ADD</label>
+                <label htmlFor="add">ADD (+)</label>
                 <input type="radio" name="prob_type" id="sub" value="sub" checked={probType === 'sub'} onChange={onChangeProb}/>
-                <label htmlFor="sub">SUBTRACTION</label>
+                <label htmlFor="sub">SUBTRACTION (-)</label>
                 <input type="radio" name="prob_type" id="mult" value="mult" checked={probType === 'mult'} onChange={onChangeProb}/> 
-                <label htmlFor="mult">MULT</label>
+                <label htmlFor="mult">MULT (x)</label>
             </div>
             <div className="home-grid">
                 <input type="radio" name="difficulty" id="easy" value="easy" checked={difficulty === 'easy'} onChange={onChangeDiff}/>

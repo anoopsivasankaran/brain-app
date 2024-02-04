@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import './Game.scss';
 import {
     Link,
@@ -59,6 +59,7 @@ export default function Game() {
     const [ search ] = useSearchParams();
     const probType = search.get('prob-type');
     const difficulty = search.get('difficulty');
+    const ref = useRef();
 
     const prob = generateQuestion(probType);
 
@@ -70,6 +71,11 @@ export default function Game() {
     const [error, setError] = useState(false);
     const [submitted, setSubmitted] = useState(false);
 
+     useEffect(() => {
+        console.log(ref);
+        ref.current.focus();
+     }, []);
+
     if(allResult.length >= NUM_OF_QUES) {
         return (
             <div>
@@ -78,6 +84,8 @@ export default function Game() {
         );
     }
 
+
+   
     return (
         <div className="Game">
             <div className="control">
@@ -90,7 +98,7 @@ export default function Game() {
             </div>
             <div className="top">
                 <label>{`${problem.oper1} ${problem.operator} ${problem.oper2}`}</label>
-                <input type="number" value={result} onChange={(evt) => {
+                <input ref={ref} type="number" value={result} onChange={(evt) => {
                     setResult(evt.target.value)
                 }}/>
 
@@ -125,6 +133,7 @@ export default function Game() {
                                 const prob = generateQuestion(probType);
                                 setProblem(prob);
                                 setResult('');
+                                ref.current.focus();
                             }}>Next &gt;</button>
                         </div>
                     </div>
