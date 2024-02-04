@@ -1,0 +1,18 @@
+.Home {
+
+    
+    .home-grid {
+        display: grid;
+        grid-template-columns: min-content auto;
+        justify-content: flex-start;
+        row-gap: 10px;
+        column-gap: 5px;
+        padding: 16px;
+        border: 1px solid silver;
+        border-radius: 4px;
+        margin-bottom: 16px;
+    }
+    button {
+        padding: 8px 16px;
+    }
+}

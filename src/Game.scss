@@ -1,0 +1,41 @@
+.Game {
+    .top {
+        font-size: 30px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        border: 1px solid silver;
+        border-radius: 4px;
+        padding: 16px;
+        label {
+            padding: 8px;
+            border-radius: 4px;
+        }
+        input {
+            font-size: 30px;
+            padding-left: 10px;
+            width: 70px;
+        }
+        margin-bottom: 20px;
+    }
+    button {
+        padding: 8px 16px;
+    }
+    .success {
+        padding: 16px 8px;
+        border-radius: 4px;
+        background: #baf5c7;
+    }
+    .error {
+        padding: 16px 8px;
+        border-radius: 4px;
+        background: #ffa3a3;
+    }
+    .result, .control {
+        margin: 16px 0;
+    }
+    .info {
+        color: grey;
+        padding: 5px;
+    }
+}

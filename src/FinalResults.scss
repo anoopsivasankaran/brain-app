@@ -1,0 +1,17 @@
+.FinalResults {
+    button {
+        padding: 8px 16px;
+    }
+    .result-item {
+        padding: 16px 8px;
+        border-radius: 4px;
+        margin: 8px 0;
+    }
+    .success {
+        
+        background: #baf5c7;
+    }
+    .error {
+        background: #ffa3a3;
+    }
+}
