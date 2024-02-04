@@ -1,13 +1,14 @@
-import './App.css';
+import './App.scss';
 import {
-    createBrowserRouter,
+    createHashRouter,
     RouterProvider,
+    useLocation
   } from "react-router-dom";
 import Home from './Home';
 import Game from './Game';
 
 
-const router = createBrowserRouter([
+const router = createHashRouter([
     {
         path: "/",
         element: <Home />,
@@ -18,9 +19,15 @@ const router = createBrowserRouter([
     }
 ]);
 function App() {
+  console.log(window.location.hash);
   return (
     <div className="App">
-       <RouterProvider router={router} />
+        <div className="header">
+            <label>Eshan's Brain App</label>
+        </div>
+        <div className="app-body">
+        <RouterProvider router={router} />
+       </div>
     </div>
   );
 }

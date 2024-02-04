@@ -1,0 +1,22 @@
+.App {
+    .app-body {
+        padding: 32px;
+    }
+    .header, button {
+        padding: 16px 16px;
+        background: linear-gradient(rgb(52, 102, 174) 0%, rgb(83, 144, 241) 100%);
+        color: white;
+        font-weight: bold;
+        &:disabled {
+            opacity: 0.5;
+        }
+        
+    }
+
+    button {
+        border: none;
+        border-radius: 4px;
+        
+    }
+    
+}

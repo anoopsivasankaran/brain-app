@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import './Game.scss';
 import {
     Link,
@@ -87,6 +87,12 @@ export default function Game() {
     const [submitted, setSubmitted] = useState(false);
     const [timeout, setTimeout] = useState(timeoutDiff);
 
+    const handleSubmit = useCallback(() => {
+        const r1 = parseInt(result);
+        setSubmitted(true)
+        setError(r1 !== problem.exptedResult)
+    }, [problem.exptedResult, result])
+
     useEffect(() => {
         ref.current.focus();
     }, [])
@@ -102,8 +108,7 @@ export default function Game() {
                 }
 
                 if(newTimeout === 0 && !submitted) {
-                    setSubmitted(true)
-                    setError(true)
+                    handleSubmit()
                 }
                 
             }, 1000);
@@ -115,7 +120,7 @@ export default function Game() {
             }
         }
         
-     }, [submitted, timeout]);
+     }, [handleSubmit, submitted, timeout]);
 
     if(allResult.length >= NUM_OF_QUES) {
         return (
@@ -124,8 +129,6 @@ export default function Game() {
             </div>
         );
     }
-
-
    
     return (
         <div className="Game">
@@ -139,7 +142,7 @@ export default function Game() {
             </div>
             <div className="top">
                 <label>{`${problem.oper1} ${problem.operator} ${problem.oper2}`}</label>
-                <input ref={ref} type="number" value={result} onChange={(evt) => {
+                <input readOnly={submitted} ref={ref} type="number" value={result} onChange={(evt) => {
                     setResult(evt.target.value)
                 }}/>
 
@@ -148,11 +151,7 @@ export default function Game() {
             {
                 !submitted && (
                     <div className="control">
-                        <button disabled={!result} onClick={() => {
-                            const r1 = parseInt(result);
-                            setSubmitted(true)
-                            setError(r1 !== problem.exptedResult)
-                        }}>Submit</button> 
+                        <button disabled={!result} onClick={handleSubmit}>Submit</button> 
                         {
                             !!timeout && <label>{timeout}</label>
                         }
