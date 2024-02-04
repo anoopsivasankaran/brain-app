@@ -1,4 +1,5 @@
 import { useState } from "react";
+import badges from './badges.png';
 import './Home.scss';
 import {
     Link,
@@ -20,6 +21,12 @@ export default function Home() {
 
     return (
         <div className="Home">
+            <div>
+                <div>
+                    <label>See which badge you can win </label>
+                </div>
+                <img src={badges} alt="badges" width="100%" />
+            </div>
             <div className="home-grid">
                 <input type="radio" name="prob_type" id="add" value="add" checked={probType === 'add'} onChange={onChangeProb}/>
                 <label htmlFor="add">ADD (+)</label>

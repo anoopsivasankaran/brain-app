@@ -34,6 +34,14 @@
     .result, .control {
         margin: 16px 0;
     }
+    .control {
+        label {
+            padding: 5px;
+            background: rgb(226, 251, 207);
+            border-radius: 10px;
+            margin-left: 16px;
+        }
+    }
     .info {
         color: grey;
         padding: 5px;
