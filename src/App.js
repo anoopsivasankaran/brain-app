@@ -6,7 +6,7 @@ import {
 import Home from './Home';
 import Game from './Game';
 
-
+//"homepage": "https://anoopsivasankaran.github.io/brain-app",
 const router = createHashRouter([
     {
         path: "/",
