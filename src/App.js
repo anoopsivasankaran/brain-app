@@ -22,7 +22,7 @@ function App() {
   return (
     <div className="App">
         <div className="header">
-            <label>Eshan's Brain App</label>
+            <label>Eshan's Mega Mind</label>
         </div>
         <div className="app-body">
         <RouterProvider router={router} />
