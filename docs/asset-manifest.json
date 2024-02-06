@@ -1,16 +1,16 @@
 {
   "files": {
-     "main.css": "/brain-app/static/css/main.1dfb0748.css",
-    "main.js": "/brain-app/static/js/main.ffff01a3.js",
+    "main.css": "/brain-app/static/css/main.1dfb0748.css",
+    "main.js": "/brain-app/static/js/main.be5c2acf.js",
     "static/js/592.070277ad.chunk.js": "/brain-app/static/js/592.070277ad.chunk.js",
     "static/media/badges.png": "/brain-app/static/media/badges.4dfeb6478b1ca07af15f.png",
     "index.html": "/brain-app/index.html",
     "main.1dfb0748.css.map": "/brain-app/static/css/main.1dfb0748.css.map",
-    "main.ffff01a3.js.map": "/brain-app/static/js/main.ffff01a3.js.map",
+    "main.be5c2acf.js.map": "/brain-app/static/js/main.be5c2acf.js.map",
     "592.070277ad.chunk.js.map": "/brain-app/static/js/592.070277ad.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.1dfb0748.css",
-    "static/js/main.ffff01a3.js"
+    "static/js/main.be5c2acf.js"
   ]
 }
