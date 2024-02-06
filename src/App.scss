@@ -1,7 +1,11 @@
 .App {
     .app-body {
         padding: 32px;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
     }
+    
     .header, button {
         padding: 16px 16px;
         background: linear-gradient(rgb(52, 102, 174) 0%, rgb(83, 144, 241) 100%);
