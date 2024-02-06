@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import './Game.scss';
 import {
-    Link,
     useSearchParams
   } from "react-router-dom";
 import FinalResults from "./FinalResults";
