@@ -42,10 +42,12 @@ export default function Home() {
                 <label htmlFor="medium">MEDIUM</label>
                 <input type="radio" name="difficulty" id="hard" value="hard" checked={difficulty === 'hard'} onChange={onChangeDiff}/> 
                 <label htmlFor="hard">HARD</label>
+                <input type="radio" name="difficulty" id="superhard" value="superhard" checked={difficulty === 'superhard'} onChange={onChangeDiff}/>
+                <label htmlFor="superhard">SUPER HARD</label>
             </div>
             
             <Link to={`/game?prob-type=${probType}&difficulty=${difficulty}`}>
-            <button>GO</button>
+                <button>GO</button>
             </Link>
         </div>
     );

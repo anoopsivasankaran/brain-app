@@ -54,17 +54,18 @@ function generateQuestion(type) {
 }
 
 function getTimeout(difficulty) {
-    // switch (difficulty) {
-    //     case 'easy':
-    //         return 0;
-    //     case 'medium':
-    //         return 20;
-    //     case 'hard':
-    //         return 10;
-    //     default:
-    //         return 0;
-    // }
-    return 100;
+    switch (difficulty) {
+        case 'easy':
+            return 0;
+        case 'medium':
+            return 20;
+        case 'hard':
+            return 10;
+        case 'superhard':
+            return 5;
+        default:
+            return 0;
+    }
 }
 
 export default function Game() {
