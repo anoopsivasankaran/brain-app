@@ -132,11 +132,6 @@ export default function Game() {
    
     return (
         <div className="Game">
-            <div className="control">
-                <Link to="/">
-                <button> &lt; HOME</button>
-                </Link>
-            </div>
             <div className="info">
                 <label>Question {allResult.length + 1} out of {NUM_OF_QUES}</label>
             </div>
