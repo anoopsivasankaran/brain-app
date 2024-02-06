@@ -55,17 +55,17 @@ function generateQuestion(type) {
 }
 
 function getTimeout(difficulty) {
-    switch (difficulty) {
-        case 'easy':
-            return 0;
-        case 'medium':
-            return 20;
-        case 'hard':
-            return 10;
-        default:
-            return 0;
-    }
-
+    // switch (difficulty) {
+    //     case 'easy':
+    //         return 0;
+    //     case 'medium':
+    //         return 20;
+    //     case 'hard':
+    //         return 10;
+    //     default:
+    //         return 0;
+    // }
+    return 100;
 }
 
 export default function Game() {
@@ -142,9 +142,20 @@ export default function Game() {
             </div>
             <div className="top">
                 <label>{`${problem.oper1} ${problem.operator} ${problem.oper2}`}</label>
-                <input readOnly={submitted} ref={ref} type="number" value={result} onChange={(evt) => {
-                    setResult(evt.target.value)
-                }}/>
+                <input
+                    readOnly={submitted}
+                    ref={ref}
+                    type="number"
+                    value={result}
+                    onChange={(evt) => {
+                        setResult(evt.target.value)
+                    }}
+                    onKeyUp={(e) => {
+                        if (e.key === "Enter") {
+                            handleSubmit();
+                        }
+                    }}
+                />
 
             </div>
             
@@ -153,7 +164,7 @@ export default function Game() {
                     <div className="control">
                         <button disabled={!result} onClick={handleSubmit}>Submit</button> 
                         {
-                            !!timeout && <label>{timeout}</label>
+                            !!timeout && <label className="timer-label">{timeout}</label>
                         }
                     </div>
                 )
