@@ -28,8 +28,10 @@ function generateQuestion(type) {
                 exptedResult: oper1 + oper2
             }
         case 'sub':
-            oper1 = getRandomInt(6, 19);
-            oper2 = getRandomInt(0, Math.min(oper1, 9));
+            const val1 = getRandomInt(6, 19);
+            const val2 = getRandomInt(2, 9);
+            oper1 = Math.max(val1, val2);
+            oper2 = Math.min(val1, val2);
             operator = '-';
             return {
                 oper1,
@@ -39,8 +41,8 @@ function generateQuestion(type) {
             }
 
         case 'mult':
-            oper1 = getRandomInt(2, 10);
-            oper2 = getRandomInt(4, 10);
+            oper1 = getRandomInt(2, 9);
+            oper2 = getRandomInt(4, 9);
             operator = 'X';
             return {
                 oper1,
