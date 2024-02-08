@@ -5,7 +5,7 @@ import {
   } from "react-router-dom";
 import FinalResults from "./FinalResults";
 
-const NUM_OF_QUES = 1;
+const NUM_OF_QUES = 10;
 
 // both inclusive
 function getRandomInt(min, max) {
