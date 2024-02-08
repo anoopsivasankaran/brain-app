@@ -16,7 +16,7 @@ function dateDiff(time) {
 
 export default function Results() {
     const results  = getAll();
-    const keys = Object.keys(results).sort((a, b) => a - b);
+    const keys = Object.keys(results).sort((a, b) => b - a);
 
     return (
         <div className="results">

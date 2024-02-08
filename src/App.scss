@@ -4,7 +4,10 @@
         margin-left: auto;
         margin-right: auto;
     }
-    
+    .header {
+        position: sticky;
+        top: 0;
+    }
     .header, button {
         padding: 16px 16px;
         background: linear-gradient(#3466ae 0%, #5390f1 100%);
