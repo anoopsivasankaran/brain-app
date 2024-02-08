@@ -8,6 +8,8 @@ import {
 
 export default function Home() {
 
+    console.log(new Date().getTime());
+
     const [probType, setProbType] = useState('add');
     const [difficulty, setDifficulty] = useState('easy');
 
@@ -25,7 +27,9 @@ export default function Home() {
                 <div>
                     <label>See which badge you can win </label>
                 </div>
-                <img src={badges} alt="badges" width="100%" />
+                <Link to="results">
+                    <img src={badges} alt="badges" width="100%"/>
+                </Link>
             </div>
             <div className="home-grid">
                 <input type="radio" name="prob_type" id="add" value="add" checked={probType === 'add'} onChange={onChangeProb}/>
@@ -46,7 +50,7 @@ export default function Home() {
                 <label htmlFor="superhard">SUPER HARD</label>
             </div>
             
-            <Link to={`/game?prob-type=${probType}&difficulty=${difficulty}`}>
+            <Link to={`/game?prob-type=${probType}&difficulty=${difficulty}&time=${new Date().getTime()}`}>
                 <button>GO</button>
             </Link>
         </div>

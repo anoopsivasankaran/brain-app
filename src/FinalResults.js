@@ -1,7 +1,9 @@
 import {
-    Link,
+    useSearchParams,
   } from "react-router-dom";
 import './FinalResults.scss';
+import { useEffect } from "react";
+import { addItem } from "./storage";
 
 function getPercentCls(allResult = []) {
     const correct = allResult.filter((item) => item.result === item.exptedResult);
@@ -26,16 +28,24 @@ function getPercentCls(allResult = []) {
 
 }
 
-export default function FinalResults({allResult = [], difficulty}) {
+export default function FinalResults({allResult = [], difficulty, probType}) {
     const percentCls = getPercentCls(allResult);
-    console.log(percentCls);
+
+    const [search] = useSearchParams();
+    const time = search.get('time');
+
+    useEffect(() => {
+        addItem({
+            startDate: parseInt(time),
+            endDate: (new Date().getTime()),
+            probType,
+            difficulty,
+            badge: percentCls
+        });
+    }, [difficulty, probType, time, percentCls]);
+
     return (
         <div className="FinalResults">
-            <div className="control">
-                <Link to="/">
-                    <button> &lt; HOME</button>
-                </Link>
-            </div>
             <div className="difficulty">
                 <div>Difficulty: {difficulty}</div>
                 <div>Badge: {percentCls}</div>

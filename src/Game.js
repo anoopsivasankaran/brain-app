@@ -5,7 +5,7 @@ import {
   } from "react-router-dom";
 import FinalResults from "./FinalResults";
 
-const NUM_OF_QUES = 10;
+const NUM_OF_QUES = 1;
 
 // both inclusive
 function getRandomInt(min, max) {
@@ -77,11 +77,7 @@ export default function Game() {
     const difficulty = search.get('difficulty');
     const timeoutDiff = getTimeout(difficulty);
     const ref = useRef();
-
     const prob = generateQuestion(probType);
-
-
-    
     const [problem, setProblem] = useState(prob);
     const [result, setResult] = useState('');
     const [allResult, setAllResult] = useState([]);
@@ -127,7 +123,7 @@ export default function Game() {
     if(allResult.length >= NUM_OF_QUES) {
         return (
             <div>
-                <FinalResults allResult={allResult} difficulty={difficulty}/>
+                <FinalResults allResult={allResult} difficulty={difficulty} probType={probType}/>
             </div>
         );
     }

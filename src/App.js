@@ -6,6 +6,7 @@ import {
 import Home from './Home';
 import Game from './Game';
 import Wrapper from './Wrapper';
+import Results from './Results';
 
 //"homepage": "https://anoopsivasankaran.github.io/brain-app",
 const router = createHashRouter([
@@ -20,6 +21,10 @@ const router = createHashRouter([
             {
                 path: "/game",
                 element: <Game />
+            },
+            {
+                path: "/results",
+                element: <Results />
             }
         ]
     },
