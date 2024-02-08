@@ -1,0 +1,41 @@
+.results {
+    .results-item {
+        display: flex;
+        padding: 8px;
+        align-items: center;
+        gap: 8px;
+        text-transform: capitalize;
+        border: 1px solid lightgray;
+        margin: 8px;
+        border-radius: 8px;
+        .day {
+            color: gray;
+            font-size: 0.8em;
+        }
+        .difficulty {
+            border-radius: 3px;
+            font-weight: bold;
+            font-size: .8em;
+            padding: 3px;
+            &.easy {
+                background: gray;
+                color: white;
+            }
+            &.medium {
+
+                background: #e6b01b;
+                color: white;
+            }
+            &.hard {
+                background: #15c7b0d1;
+                color: white;
+                
+            }
+            &.superhard {
+                background: #1565c7d1;
+                color: white;
+            }
+        }
+        
+    }
+}

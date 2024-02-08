@@ -181,7 +181,6 @@ export default function Game() {
                                 setProblem(prob);
                                 setResult('');
                                 setTimeout(timeoutDiff);
-                                console.log(ref.current);
                                 ref.current.focus();
                                 
                             }}>Next &gt;</button>

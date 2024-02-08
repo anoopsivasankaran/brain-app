@@ -31,7 +31,6 @@ const router = createHashRouter([
     
 ]);
 function App() {
-  console.log(window.location.hash);
   return (
     <div className="App">
         <div className="app-body">

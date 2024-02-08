@@ -8,8 +8,6 @@ import {
 
 export default function Home() {
 
-    console.log(new Date().getTime());
-
     const [probType, setProbType] = useState('add');
     const [difficulty, setDifficulty] = useState('easy');
 

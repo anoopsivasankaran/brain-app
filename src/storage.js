@@ -2,13 +2,11 @@
 const KEY = 'result';
 
 function saveAll(obj) {
-    console.log('SAVING', obj);
     localStorage.setItem(KEY, JSON.stringify(obj));
 }
 
 function addItem(item) {
     const obj = getAll();
-    console.log('GETTING', obj);
     obj[item.startDate] = item;
     saveAll(obj);
     
@@ -27,5 +25,6 @@ function getAll() {
 }
 
 export {
-    addItem
+    addItem,
+    getAll
 }
