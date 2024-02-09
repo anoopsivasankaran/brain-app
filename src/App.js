@@ -7,6 +7,7 @@ import Home from './Home';
 import Game from './Game';
 import Wrapper from './Wrapper';
 import Results from './Results';
+import { Table } from './Table';
 
 //"homepage": "https://anoopsivasankaran.github.io/brain-app",
 const router = createHashRouter([
@@ -17,6 +18,10 @@ const router = createHashRouter([
             {
                 index: true,
                 element: <Home />,
+            },
+            {
+                path: "/table",
+                element: <Table />
             },
             {
                 path: "/game",

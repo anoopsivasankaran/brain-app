@@ -1,4 +1,19 @@
 .grid {
     display: grid;
-    grid-column: auto auto auto auto;
+    grid-template-columns: auto auto auto auto;
+    text-transform: capitalize;
+    > div {
+        border: 1px solid black;
+        padding: 8px;
+    }
+    .badge-list-container {
+        display: grid;
+        grid-template-columns: auto auto;
+    }
+    .badge-list {
+        display: flex;
+        align-items: center;
+        font-size: 16px;
+        gap: 8px;
+    }
 }

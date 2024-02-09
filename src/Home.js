@@ -21,12 +21,13 @@ export default function Home() {
 
     return (
         <div className="Home">
-            <div>
-                <div>
-                    <label>See which badge you can win </label>
-                </div>
+            <div className="home-header">
+                
                 <Link to="results">
-                    <img src={badges} alt="badges" width="100%"/>
+                    <button> History </button>
+                </Link>
+                <Link to="table">
+                    <button> Badges </button>
                 </Link>
             </div>
             <div className="home-grid">
