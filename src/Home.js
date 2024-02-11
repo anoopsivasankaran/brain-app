@@ -1,8 +1,9 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import './Home.scss';
 import {
     Link,
   } from "react-router-dom";
+import { DIFFICULTY_MAP } from "./utils";
   
 
 export default function Home() {
@@ -38,14 +39,22 @@ export default function Home() {
                 <label htmlFor="mult">MULT (x)</label>
             </div>
             <div className="home-grid">
-                <input type="radio" name="difficulty" id="easy" value="easy" checked={difficulty === 'easy'} onChange={onChangeDiff}/>
-                <label htmlFor="easy">EASY</label>
-                <input type="radio" name="difficulty" id="medium" value="medium" checked={difficulty === 'medium'} onChange={onChangeDiff}/>
-                <label htmlFor="medium">MEDIUM</label>
-                <input type="radio" name="difficulty" id="hard" value="hard" checked={difficulty === 'hard'} onChange={onChangeDiff}/> 
-                <label htmlFor="hard">HARD</label>
-                <input type="radio" name="difficulty" id="superhard" value="superhard" checked={difficulty === 'superhard'} onChange={onChangeDiff}/>
-                <label htmlFor="superhard">SUPER HARD</label>
+                {
+                    Object.keys(DIFFICULTY_MAP).map((item) => {
+                        console.log('***', item);
+                        return (
+                            <React.Fragment key={item}>
+                                <input type="radio" name="difficulty" id={item} value={item} checked={difficulty === item} onChange={onChangeDiff}/>
+                                <label htmlFor={item}>
+                                    {DIFFICULTY_MAP[item]?.name || item }
+                                    {DIFFICULTY_MAP[item].level === 2 ? '\u270E' : null}
+                                </label>
+                            </React.Fragment>
+                        )
+                    })
+                }
+               
+               
             </div>
             
             <Link to={`/game?prob-type=${probType}&difficulty=${difficulty}&time=${new Date().getTime()}`}>

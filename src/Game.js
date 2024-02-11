@@ -4,7 +4,7 @@ import {
     useSearchParams
   } from "react-router-dom";
 import FinalResults from "./FinalResults";
-import { getTimeForDifficulty } from "./utils";
+import { getLevel, getTimeForDifficulty } from "./utils";
 
 const NUM_OF_QUES = 10;
 
@@ -15,12 +15,19 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function generateQuestion(type) {
+function generateQuestion(type, diff) {
     let oper1, oper2, operator;
+    const level = getLevel(diff);
     switch (type) {
         case 'add':
-            oper1 = getRandomInt(3, 9);
-            oper2 = getRandomInt(5, 9);
+            if(level === 2) {
+                oper1 = getRandomInt(1000, 10000);
+                oper2 = getRandomInt(1000, 10000);
+            } else {
+                oper1 = getRandomInt(3, 9);
+                oper2 = getRandomInt(5, 9);
+            }
+            
             operator = '+';
             return {
                 oper1,
@@ -29,8 +36,15 @@ function generateQuestion(type) {
                 exptedResult: oper1 + oper2
             }
         case 'sub':
-            const val1 = getRandomInt(6, 19);
-            const val2 = getRandomInt(2, 9);
+            let val1, val2;
+            if(level === 2) {
+                val1 = getRandomInt(1000, 10000);
+                val2 = getRandomInt(1000, 10000);
+            } else {
+                val1 = getRandomInt(6, 19);
+                val2 = getRandomInt(2, 9);
+            }
+            
             oper1 = Math.max(val1, val2);
             oper2 = Math.min(val1, val2);
             operator = '-';
@@ -42,8 +56,14 @@ function generateQuestion(type) {
             }
 
         case 'mult':
-            oper1 = getRandomInt(2, 9);
-            oper2 = getRandomInt(4, 9);
+            if(level === 2) {
+                oper1 = getRandomInt(100, 1000);
+                oper2 = getRandomInt(45, 99);
+            } else {
+                oper1 = getRandomInt(2, 9);
+                oper2 = getRandomInt(4, 9);
+            }
+            
             operator = 'X';
             return {
                 oper1,
@@ -52,7 +72,7 @@ function generateQuestion(type) {
                 exptedResult: oper1 * oper2
             }
         default:
-            break;
+            return {};
     }
 }
 
@@ -61,9 +81,9 @@ export default function Game() {
     const [ search ] = useSearchParams();
     const probType = search.get('prob-type');
     const difficulty = search.get('difficulty');
-    const timeoutDiff = getTimeForDifficulty(difficulty);
+    const timeoutDiff = getTimeForDifficulty(difficulty, probType);
     const ref = useRef();
-    const prob = generateQuestion(probType);
+    const prob = generateQuestion(probType, difficulty);
     const [problem, setProblem] = useState(prob);
     const [result, setResult] = useState('');
     const [allResult, setAllResult] = useState([]);
@@ -113,6 +133,8 @@ export default function Game() {
             </div>
         );
     }
+
+    console.log(timeout);
    
     return (
         <div className="Game">
@@ -121,6 +143,7 @@ export default function Game() {
             </div>
             <div className="top">
                 <label>{`${problem.oper1} ${problem.operator} ${problem.oper2}`}</label>
+                <div>
                 <input
                     readOnly={submitted}
                     ref={ref}
@@ -135,6 +158,7 @@ export default function Game() {
                         }
                     }}
                 />
+                </div>
 
             </div>
             
@@ -163,7 +187,7 @@ export default function Game() {
                                 setSubmitted(false);
                                 const r1 = parseInt(result);
                                 setAllResult([...allResult, {...problem, result: r1}])
-                                const prob = generateQuestion(probType);
+                                const prob = generateQuestion(probType, difficulty);
                                 setProblem(prob);
                                 setResult('');
                                 setTimeout(timeoutDiff);
