@@ -1,6 +1,21 @@
 
 const KEY = 'result';
 
+const DIFFICULTY_MAP = {
+    easy: {
+        time: 0
+    },
+    medium: {
+        time: 20
+    },
+    hard: {
+        time: 10
+    },
+    superhard: {
+        time: 5
+    }
+};
+
 function saveAll(obj) {
     localStorage.setItem(KEY, JSON.stringify(obj));
 }
@@ -24,7 +39,18 @@ function getAll() {
     }
 }
 
+function getAllDifficulty() {
+    return Object.keys(DIFFICULTY_MAP);
+}
+
+function getTimeForDifficulty(difficulty) {
+    return DIFFICULTY_MAP[difficulty]?.time || 0;
+}
+
+
 export {
     addItem,
-    getAll
+    getAll,
+    getAllDifficulty,
+    getTimeForDifficulty
 }

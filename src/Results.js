@@ -1,5 +1,5 @@
 import { Badge } from "./Badge";
-import { getAll } from "./storage";
+import { getAll } from "./utils";
 import moment from 'moment';
 
 import './Results.scss';

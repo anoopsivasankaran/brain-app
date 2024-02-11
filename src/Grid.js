@@ -2,11 +2,11 @@
 import React, { useEffect, useState } from 'react';
 import './Grid.scss';
 import { Badge } from './Badge';
-import { getAll } from './storage';
+import { getAll, getAllDifficulty } from './utils';
 import {groupBy, mapValues} from 'lodash';
 
 
-const ALL_DIFFICULTY = ['easy', 'medium', 'hard', 'superhard'];
+const ALL_DIFFICULTY = getAllDifficulty();
 
 
 function BadgesList({data = []}) {

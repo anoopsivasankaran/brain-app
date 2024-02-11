@@ -3,7 +3,7 @@ import {
   } from "react-router-dom";
 import './FinalResults.scss';
 import { useEffect } from "react";
-import { addItem } from "./storage";
+import { addItem } from "./utils";
 
 function getPercentCls(allResult = []) {
     const correct = allResult.filter((item) => item.result === item.exptedResult);

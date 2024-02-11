@@ -4,6 +4,7 @@ import {
     useSearchParams
   } from "react-router-dom";
 import FinalResults from "./FinalResults";
+import { getTimeForDifficulty } from "./utils";
 
 const NUM_OF_QUES = 10;
 
@@ -55,27 +56,12 @@ function generateQuestion(type) {
     }
 }
 
-function getTimeout(difficulty) {
-    switch (difficulty) {
-        case 'easy':
-            return 0;
-        case 'medium':
-            return 20;
-        case 'hard':
-            return 10;
-        case 'superhard':
-            return 5;
-        default:
-            return 0;
-    }
-}
-
 export default function Game() {
 
     const [ search ] = useSearchParams();
     const probType = search.get('prob-type');
     const difficulty = search.get('difficulty');
-    const timeoutDiff = getTimeout(difficulty);
+    const timeoutDiff = getTimeForDifficulty(difficulty);
     const ref = useRef();
     const prob = generateQuestion(probType);
     const [problem, setProblem] = useState(prob);
