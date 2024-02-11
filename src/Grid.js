@@ -1,49 +1,51 @@
 //TODO REMOVE
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Grid.scss';
 import { Badge } from './Badge';
+import { getAll } from './storage';
+import {groupBy, mapValues} from 'lodash';
 
-const TEST = {
-    add: {
-        easy: [0, 2, 0, 3],
-        medium: [12],
-        hard: [43],
-        superhard: [36]
-    },
-    sub: {
-        easy: [22],
-        medium: [11, 3, 6, 0],
-        hard: [0, 12],
-        superhard: [45]
-    },
-    mult: {
-        easy: [87],
-        medium: [1009, 5, 0, 1],
-        hard: [1123, 3, 445, 2],
-        superhard: [0, 1, 2, 1]
-    },
-}
 
 const ALL_DIFFICULTY = ['easy', 'medium', 'hard', 'superhard'];
 
-const ALL_BADGES = ['poop', 'stone', 'silver', 'gold', 'dimond'];
 
 function BadgesList({data = []}) {
-    return data.map((count, index) => {
-        const badge = ALL_BADGES[index];
-        if(Number.isInteger(count)) {
+    return Object.keys(data).map((badge) => {
+        if(badge === 'poop') {
+            return null;
+        }
+        const count = data[badge];
             return (
-                <div className="badge-list" key={index}>
+                <div className="badge-list" key={badge}>
                     <Badge type={badge}/>
                     {count}
                 </div>
             );
-        } 
-        return null;
     });
 }
 
-export default function Grid({data = TEST}) {
+
+const DEFAULT = {add: {}, sub: {}, mult: {}};
+export default function Grid() {
+
+    const [data, setData] = useState(DEFAULT);
+    
+    useEffect(() => {
+        const storage = getAll();
+        
+        const values = Object.values(storage);
+
+
+        const matchGroupBy = groupBy(values, 'probType');
+        const matchDiffGroupBy = mapValues(matchGroupBy, (val) => {
+            const newGrpup = groupBy(val, 'difficulty');
+            return mapValues(newGrpup, (item) => {
+                const val2 = groupBy(item, 'badge');
+                return mapValues(val2, item => item.length);
+            })
+        });
+        setData({...DEFAULT, ...matchDiffGroupBy});
+    }, []);
 
     const allMatches  = Object.keys(data);
 
@@ -65,7 +67,7 @@ export default function Grid({data = TEST}) {
                             {
                                 allMatches.map((match) => (
                                     <div key={match} className="badge-list-container">
-                                        <BadgesList data={TEST[match][diff]}/>
+                                        <BadgesList data={data[match][diff]}/>
                                     </div>
                                 ))
                             }

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import badges from './badges.png';
 import './Home.scss';
 import {
     Link,
