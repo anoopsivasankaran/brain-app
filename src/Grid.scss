@@ -7,8 +7,8 @@
         padding: 4px;
     }
     .badge-list-container {
-        display: grid;
-        grid-template-columns: auto;
+        display: flex;
+        flex-direction: column-reverse;
         align-items: flex-start;
     }
     .badge-list {
