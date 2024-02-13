@@ -1,18 +1,22 @@
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import './Wrapper.scss';
+import { Popup } from "./Popup";
+import { useState } from "react";
 
 export default function Wrapper() {
 
     const { pathname } = useLocation();
+    const navigate = useNavigate();
+    const [showPopup, setShowPopup] = useState(false);
     
     return (
         <div className="Wrapper">
             <div className="header">
                 {
                     pathname !== '/' && (
-                        <Link to="/">
-                            <button> &#60; HOME</button>
-                        </Link>
+                        <button onClick={() => {
+                            setShowPopup(true)
+                        }}> &#60; HOME</button>
                     )
                 }
                 
@@ -21,6 +25,21 @@ export default function Wrapper() {
             <div className="wrapper-body">
                 <Outlet />
             </div>
+            {
+                showPopup && (
+                    <Popup
+                        message="Do u really want to cancel and go home ?"
+                        onYes={() => {
+                            navigate('/');
+                            setShowPopup(false);
+                        }}
+                        onNo={() => {
+                            setShowPopup(false)
+                        }}
+                    />
+                )
+            }
+            
         </div>
     );
 }
