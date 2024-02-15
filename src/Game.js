@@ -4,8 +4,7 @@ import {
     useSearchParams
   } from "react-router-dom";
 import FinalResults from "./FinalResults";
-import { getTimeForDifficulty } from "./utils";
-import { generateQuestion } from "./config";
+import { generateQuestion, getMatchTitle, getTimeForDifficulty } from "./config";
 
 const NUM_OF_QUES = 10;
 
@@ -15,7 +14,7 @@ export default function Game() {
     const probType = search.get('prob-type');
     const difficulty = search.get('difficulty');
     const match = search.get('match');
-    const timeoutDiff = getTimeForDifficulty(difficulty, probType);
+    const timeoutDiff = getTimeForDifficulty(match, probType, difficulty);
     const ref = useRef();
     const prob = generateQuestion(match, probType, difficulty);
     const [problem, setProblem] = useState(prob);
@@ -72,6 +71,9 @@ export default function Game() {
    
     return (
         <div className="Game">
+            <div>
+            <h3>{`${getMatchTitle(match)} -> ${difficulty}`}</h3>
+            </div>
             <div className="info">
                 <label>Question {allResult.length + 1} out of {NUM_OF_QUES}</label>
             </div>

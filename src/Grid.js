@@ -2,11 +2,12 @@
 import React, { useEffect, useState } from 'react';
 import './Grid.scss';
 import { Badge } from './Badge';
-import { getAll, getAllDifficulty } from './utils';
+import { getAll } from './utils';
 import {groupBy, mapValues} from 'lodash';
 
 
-const ALL_DIFFICULTY = getAllDifficulty();
+//TODO fix
+const ALL_DIFFICULTY = [];
 
 
 function BadgesList({data = []}) {

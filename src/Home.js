@@ -3,7 +3,7 @@ import './Home.scss';
 import {
     Link, useSearchParams,
   } from "react-router-dom";
-import { getDifficulties, getGame } from "./config";
+import { getDifficulties, getGame, getMatchTitle } from "./config";
 import getText from "./text";
   
 
@@ -40,15 +40,21 @@ export default function Home() {
 
     return (
         <div className="Home">
+            <div>
+                <h3>{getMatchTitle(match)}</h3>
+            </div>
             <div className="home-header">
-                
                 <Link to="results">
                     <button> History </button>
                 </Link>
                 <Link to="table">
                     <button> Badges </button>
                 </Link>
+                <Link className="home-button" to={`/`}>
+                    <button> &lt; Home </button>
+                </Link>
             </div>
+            
             <div className="home-grid">
                 {
                     Object.keys(allGames).map((item) => {
@@ -75,8 +81,8 @@ export default function Home() {
                     })
                 }
                
-            </div>
             
+            </div>
             <Link to={`/game?match=${match}&prob-type=${probType}&difficulty=${difficulty}&time=${new Date().getTime()}`}>
                 <button>GO</button>
             </Link>

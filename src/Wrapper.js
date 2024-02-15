@@ -13,7 +13,7 @@ export default function Wrapper() {
         <div className="Wrapper">
             <div className="header">
                 {
-                    pathname !== '/' && (
+                    pathname !== '/' && pathname !=='/home' && (
                         <button onClick={() => {
                             setShowPopup(true)
                         }}> &#60; HOME</button>

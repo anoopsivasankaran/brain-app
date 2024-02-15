@@ -10,7 +10,7 @@ function getRandomInt(min, max) {
 const MATCH_MAP = {
     match1: {
         _info: {
-            name: 'Math: Level 1',
+            name: 'Maths: Level 1',
             numbers: 10,
             image: scaleImage,
         },
@@ -123,7 +123,7 @@ const MATCH_MAP = {
     },
     match2: {
         _info: {
-            name: 'Math: Level 2',
+            name: 'Maths: Level 2',
             numbers: 5,
             image: calcImage
         },
@@ -197,6 +197,12 @@ function getMatchInfo(matchName) {
     return MATCH_MAP[matchName]?._info;
 }
 
+function getMatchTitle(matchName) {
+    const info = getMatchInfo(matchName) || {};
+    return info?.name;
+
+}
+
 function removeUnderscores(obj) {
     const ret = {};
     for (const [key = '', value] of Object.entries(obj)) {
@@ -237,8 +243,12 @@ function generateQuestion(match, type, diff = '') {
     }
     
     return null
+}
 
-
+function getTimeForDifficulty(match, type, diffi = '') {
+    const aa = MATCH_MAP?.[match]?.[type]?.[diffi]?.time;
+    console.log(match, type, diffi, aa);
+    return aa;
 }
 
 export {
@@ -246,5 +256,7 @@ export {
     getGame,
     getMenuItems,
     getDifficulties,
-    generateQuestion
+    generateQuestion,
+    getTimeForDifficulty,
+    getMatchTitle
 }
