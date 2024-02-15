@@ -1,0 +1,15 @@
+.MenuPage {
+    display: grid;
+    gap: 16px;
+    .menu-item {
+        padding: 20px;
+        border: 1px solid lightgray;
+        border-radius: 10px;
+        text-decoration: none;
+        color: black;
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        font-size: 18px;
+    }
+}

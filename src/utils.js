@@ -1,3 +1,4 @@
+import MATCH_MAP from "./config";
 
 const KEY = 'result';
 
@@ -29,6 +30,17 @@ const DIFFICULTY_MAP = {
         name: 'Super mega'
     }
 };
+
+function getMenuItems() {
+    return Object.keys(MATCH_MAP).map((item) => {
+        const val = MATCH_MAP[item];
+        return {
+            key: item,
+            name: val._info.name,
+            image: val._info.image,
+        };
+    });
+}
 
 function getLevel(diff) {
     return DIFFICULTY_MAP[diff]?.level || 1;
@@ -72,5 +84,6 @@ export {
     getAllDifficulty,
     getTimeForDifficulty,
     DIFFICULTY_MAP,
-    getLevel
+    getLevel,
+    getMenuItems
 }

@@ -41,7 +41,6 @@ export default function Home() {
             <div className="home-grid">
                 {
                     Object.keys(DIFFICULTY_MAP).map((item) => {
-                        console.log('***', item);
                         return (
                             <React.Fragment key={item}>
                                 <input type="radio" name="difficulty" id={item} value={item} checked={difficulty === item} onChange={onChangeDiff}/>
