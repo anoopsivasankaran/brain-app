@@ -3,7 +3,7 @@ import './Home.scss';
 import {
     Link, useSearchParams,
   } from "react-router-dom";
-import { getGame } from "./config";
+import { getDifficulties, getGame } from "./config";
 import getText from "./text";
   
 
@@ -18,14 +18,16 @@ export default function Home() {
     const allGames = getGame(match);
     console.log(allGames);
     
-
+    
     const [probType, setProbType] = useState();
+
+    console.log(probType);
 
     useState(() => {
         setProbType(Object.keys(allGames)[0])
     }, [allGames])
 
-    const diffs = allGames[probType];
+    const diffs = getDifficulties(match, probType);
 
 
     const onChangeProb = (evt) => {
@@ -61,7 +63,7 @@ export default function Home() {
             </div>
             <div className="home-grid">
                 {
-                    Object.keys(diffs ||{}).map((item) => {
+                    Object.keys(diffs).map((item) => {
                         return (
                             <React.Fragment key={item}>
                                 <input type="radio" name="difficulty" id={item} value={item} checked={difficulty === item} onChange={onChangeDiff}/>
@@ -75,7 +77,7 @@ export default function Home() {
                
             </div>
             
-            <Link to={`/game?prob-type=${probType}&difficulty=${difficulty}&time=${new Date().getTime()}`}>
+            <Link to={`/game?match=${match}&prob-type=${probType}&difficulty=${difficulty}&time=${new Date().getTime()}`}>
                 <button>GO</button>
             </Link>
         </div>

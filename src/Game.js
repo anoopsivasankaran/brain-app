@@ -4,86 +4,20 @@ import {
     useSearchParams
   } from "react-router-dom";
 import FinalResults from "./FinalResults";
-import { getLevel, getTimeForDifficulty } from "./utils";
+import { getTimeForDifficulty } from "./utils";
+import { generateQuestion } from "./config";
 
 const NUM_OF_QUES = 10;
-
-// both inclusive
-function getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-function generateQuestion(type, diff) {
-    let oper1, oper2, operator;
-    const level = getLevel(diff);
-    switch (type) {
-        case 'add':
-            if(level === 2) {
-                oper1 = getRandomInt(1000, 10000);
-                oper2 = getRandomInt(1000, 10000);
-            } else {
-                oper1 = getRandomInt(3, 9);
-                oper2 = getRandomInt(5, 9);
-            }
-            
-            operator = '+';
-            return {
-                oper1,
-                oper2,
-                operator,
-                exptedResult: oper1 + oper2
-            }
-        case 'sub':
-            let val1, val2;
-            if(level === 2) {
-                val1 = getRandomInt(1000, 10000);
-                val2 = getRandomInt(1000, 10000);
-            } else {
-                val1 = getRandomInt(6, 19);
-                val2 = getRandomInt(2, 9);
-            }
-            
-            oper1 = Math.max(val1, val2);
-            oper2 = Math.min(val1, val2);
-            operator = '-';
-            return {
-                oper1,
-                oper2,
-                operator,
-                exptedResult: oper1 - oper2
-            }
-
-        case 'mult':
-            if(level === 2) {
-                oper1 = getRandomInt(100, 1000);
-                oper2 = getRandomInt(45, 99);
-            } else {
-                oper1 = getRandomInt(2, 9);
-                oper2 = getRandomInt(4, 9);
-            }
-            
-            operator = 'X';
-            return {
-                oper1,
-                oper2,
-                operator,
-                exptedResult: oper1 * oper2
-            }
-        default:
-            return {};
-    }
-}
 
 export default function Game() {
 
     const [ search ] = useSearchParams();
     const probType = search.get('prob-type');
     const difficulty = search.get('difficulty');
+    const match = search.get('match');
     const timeoutDiff = getTimeForDifficulty(difficulty, probType);
     const ref = useRef();
-    const prob = generateQuestion(probType, difficulty);
+    const prob = generateQuestion(match, probType, difficulty);
     const [problem, setProblem] = useState(prob);
     const [result, setResult] = useState('');
     const [allResult, setAllResult] = useState([]);
@@ -187,7 +121,7 @@ export default function Game() {
                                 setSubmitted(false);
                                 const r1 = parseInt(result);
                                 setAllResult([...allResult, {...problem, result: r1}])
-                                const prob = generateQuestion(probType, difficulty);
+                                const prob = generateQuestion(match, probType, difficulty);
                                 setProblem(prob);
                                 setResult('');
                                 setTimeout(timeoutDiff);

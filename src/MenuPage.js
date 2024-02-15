@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import './MenuPage.scss';
-import { getMenuItems } from './utils';
+import { getMenuItems } from './config';
 
 export function MenuPage() {
     const menuItems = getMenuItems();

@@ -1,6 +1,12 @@
 import calcImage from './images/calc.jpg';
 import scaleImage from './images/scale.jpg';
 
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 const MATCH_MAP = {
     match1: {
         _info: {
@@ -21,6 +27,17 @@ const MATCH_MAP = {
             superhard: {
                 time: 5,
             },
+            _ques: () => {
+                const oper1 = getRandomInt(3, 9);
+                const oper2 = getRandomInt(5, 9);
+                const operator = '+';
+                return {
+                    oper1,
+                    oper2,
+                    operator,
+                    exptedResult: oper1 + oper2
+                }
+            },
         },
         sub: {
             easy: {
@@ -34,6 +51,20 @@ const MATCH_MAP = {
             },
             superhard: {
                 time: 5,
+            },
+            _ques: () => {
+                const val1 = getRandomInt(6, 19);
+                const val2 = getRandomInt(2, 9);
+                const oper1 = Math.max(val1, val2);
+                const oper2 = Math.min(val1, val2);
+                const operator = '-';
+
+                return {
+                    oper1,
+                    oper2,
+                    operator,
+                    exptedResult: oper1 - oper2
+                }
             },
         },
         mult: {
@@ -49,6 +80,17 @@ const MATCH_MAP = {
             superhard: {
                 time: 5,
             }, 
+            _ques: () => {
+                const oper1 = getRandomInt(2, 9);
+                const oper2 = getRandomInt(4, 9);
+                const operator = 'X';
+                return {
+                    oper1,
+                    oper2,
+                    operator,
+                    exptedResult: oper1 * oper2
+                }
+            },
         },
         div: {
             easy: {
@@ -62,8 +104,21 @@ const MATCH_MAP = {
             },
             superhard: {
                 time: 5,
-                name: 'Super Hard'
-            }, 
+            },
+            _ques: () => {
+                const num1 = getRandomInt(2, 9);
+                const num2 = getRandomInt(2, 9);
+                const rem = getRandomInt(0, num2);
+
+                const operator = '\u00F7';
+                return {
+                    oper1: num1 * num2 + 2,
+                    oper2: num2,
+                    operator,
+                    exptedResult: num1,
+                    exptedResult2: rem,
+                }
+            },
         }
     },
     match2: {
@@ -80,43 +135,61 @@ const MATCH_MAP = {
             hard: {
                 time: 30,
                 level: 2,
-            }
+            },
+            _ques: () => {
+                const oper1 = getRandomInt(1000, 10000);
+                const oper2 = getRandomInt(1000, 10000);
+                const operator = '+';
+                return {
+                    oper1,
+                    oper2,
+                    operator,
+                    exptedResult: oper1 + oper2
+                }
+            },
     
         },
         sub: {
             easy :{
                 time: 0,
-                level: 2,
             },
             hard: {
                 time: 60,
-                level: 2,
-                name: 'Super mega'
-            }
+            },
+            _ques: () => {
+                const val1 = getRandomInt(1000, 10000);
+                const val2 = getRandomInt(1000, 10000);
+                const oper1 = Math.max(val1, val2);
+                const oper2 = Math.min(val1, val2);
+                const operator = '-';
+
+                return {
+                    oper1,
+                    oper2,
+                    operator,
+                    exptedResult: oper1 - oper2
+                }
+            },
         },
         mult: {
             easy :{
                 time: 0,
-                level: 2,
             },
             hard: {
                 time: 120,
-                level: 2,
-                name: 'Super mega'
-            }
+            },
+            _ques: () => {
+                const oper1 = getRandomInt(100, 1000);
+                const oper2 = getRandomInt(45, 99);
+                const operator = 'X';
+                return {
+                    oper1,
+                    oper2,
+                    operator,
+                    exptedResult: oper1 * oper2
+                }
+            },
         },
-        div: {
-            easy :{
-                time: 0,
-                level: 2,
-            },
-            hard: {
-                time: 120,
-                level: 2,
-                name: 'Super mega'
-            }
-    
-        }
     }
 }
 
@@ -124,10 +197,9 @@ function getMatchInfo(matchName) {
     return MATCH_MAP[matchName]?._info;
 }
 
-function getGame(matchName) {
-    const all =  MATCH_MAP[matchName] || {};
+function removeUnderscores(obj) {
     const ret = {};
-    for (const [key = '', value] of Object.entries(all)) {
+    for (const [key = '', value] of Object.entries(obj)) {
         if(key[0] !== '_') {
             ret[key] = value;
         }
@@ -135,9 +207,44 @@ function getGame(matchName) {
     return ret;
 }
 
-export default MATCH_MAP;
+function getGame(matchName) {
+    const all =  MATCH_MAP[matchName] || {};
+    return removeUnderscores(all);
+}
+
+function getMenuItems() {
+    return Object.keys(MATCH_MAP).map((item) => {
+        const val = MATCH_MAP[item];
+        return {
+            key: item,
+            name: val._info.name,
+            image: val._info.image,
+        };
+    });
+}
+
+function getDifficulties(match, type) {
+    const diffiObj = MATCH_MAP?.[match]?.[type] || {};
+    return removeUnderscores(diffiObj);
+
+}
+
+function generateQuestion(match, type, diff = '') {
+    const diffiObj = MATCH_MAP?.[match]?.[type] || {};
+    const fn = diffiObj?.[diff]?._ques || diffiObj?._ques;
+    if(fn) {
+        return fn();
+    }
+    
+    return null
+
+
+}
 
 export {
     getMatchInfo,
-    getGame
+    getGame,
+    getMenuItems,
+    getDifficulties,
+    generateQuestion
 }
