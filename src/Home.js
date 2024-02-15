@@ -1,15 +1,32 @@
 import React, { useState } from "react";
 import './Home.scss';
 import {
-    Link,
+    Link, useSearchParams,
   } from "react-router-dom";
-import { DIFFICULTY_MAP } from "./utils";
+import { getGame } from "./config";
+import getText from "./text";
   
 
 export default function Home() {
 
-    const [probType, setProbType] = useState('add');
+    
     const [difficulty, setDifficulty] = useState('easy');
+
+    const [ search ] = useSearchParams();
+    const match = search.get('match');
+
+    const allGames = getGame(match);
+    console.log(allGames);
+    
+
+    const [probType, setProbType] = useState();
+
+    useState(() => {
+        setProbType(Object.keys(allGames)[0])
+    }, [allGames])
+
+    const diffs = allGames[probType];
+
 
     const onChangeProb = (evt) => {
         setProbType(evt.target.value);
@@ -31,28 +48,30 @@ export default function Home() {
                 </Link>
             </div>
             <div className="home-grid">
-                <input type="radio" name="prob_type" id="add" value="add" checked={probType === 'add'} onChange={onChangeProb}/>
-                <label htmlFor="add">ADD (+)</label>
-                <input type="radio" name="prob_type" id="sub" value="sub" checked={probType === 'sub'} onChange={onChangeProb}/>
-                <label htmlFor="sub">SUBTRACTION (-)</label>
-                <input type="radio" name="prob_type" id="mult" value="mult" checked={probType === 'mult'} onChange={onChangeProb}/> 
-                <label htmlFor="mult">MULT (x)</label>
+                {
+                    Object.keys(allGames).map((item) => {
+                        return (
+                            <React.Fragment key={item}>
+                                <input type="radio" name="prob_type" id={item} value={item} checked={probType === item} onChange={onChangeProb}/> 
+                                <label htmlFor={item}>{getText(item)}</label>
+                            </React.Fragment>
+                        )
+                    })
+                }
             </div>
             <div className="home-grid">
                 {
-                    Object.keys(DIFFICULTY_MAP).map((item) => {
+                    Object.keys(diffs ||{}).map((item) => {
                         return (
                             <React.Fragment key={item}>
                                 <input type="radio" name="difficulty" id={item} value={item} checked={difficulty === item} onChange={onChangeDiff}/>
                                 <label htmlFor={item}>
-                                    {DIFFICULTY_MAP[item]?.name || item }
-                                    {DIFFICULTY_MAP[item].level === 2 ? '\u270E' : null}
+                                    {getText(item) }
                                 </label>
                             </React.Fragment>
                         )
                     })
                 }
-               
                
             </div>
             

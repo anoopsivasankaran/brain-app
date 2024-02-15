@@ -6,7 +6,7 @@ const MATCH_MAP = {
         _info: {
             name: 'Math: Level 1',
             numbers: 10,
-            image: scaleImage
+            image: scaleImage,
         },
         add: {
             easy: {
@@ -120,4 +120,24 @@ const MATCH_MAP = {
     }
 }
 
+function getMatchInfo(matchName) {
+    return MATCH_MAP[matchName]?._info;
+}
+
+function getGame(matchName) {
+    const all =  MATCH_MAP[matchName] || {};
+    const ret = {};
+    for (const [key = '', value] of Object.entries(all)) {
+        if(key[0] !== '_') {
+            ret[key] = value;
+        }
+    }
+    return ret;
+}
+
 export default MATCH_MAP;
+
+export {
+    getMatchInfo,
+    getGame
+}
