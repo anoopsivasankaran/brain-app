@@ -29,7 +29,6 @@ export default function Game() {
         const r1 = parseInt(result);
         const r2 = parseInt(result2);
         setSubmitted(true)
-        console.log(problem, result, result2);
         let err;
         if(Number.isInteger(problem.exptedResult2)) {
             err = (r1 !== problem.exptedResult) || (r2 !== problem.exptedResult2)
@@ -71,13 +70,11 @@ export default function Game() {
     if(allResult.length >= NUM_OF_QUES) {
         return (
             <div>
-                <FinalResults allResult={allResult} difficulty={difficulty} probType={probType}/>
+                <FinalResults allResult={allResult} difficulty={difficulty} probType={probType} match={match}/>
             </div>
         );
     }
 
-    console.log(timeout);
-   
     return (
         <div className={`Game ${probType}`}>
             <div>

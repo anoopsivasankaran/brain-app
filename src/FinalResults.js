@@ -28,7 +28,7 @@ function getPercentCls(allResult = []) {
 
 }
 
-export default function FinalResults({allResult = [], difficulty, probType}) {
+export default function FinalResults({allResult = [], difficulty, probType, match}) {
     const percentCls = getPercentCls(allResult);
 
     const [search] = useSearchParams();
@@ -40,9 +40,10 @@ export default function FinalResults({allResult = [], difficulty, probType}) {
             endDate: (new Date().getTime()),
             probType,
             difficulty,
-            badge: percentCls
+            badge: percentCls,
+            match,
         });
-    }, [difficulty, probType, time, percentCls]);
+    }, [difficulty, probType, time, percentCls, match]);
 
     return (
         <div className="FinalResults">

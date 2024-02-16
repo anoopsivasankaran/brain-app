@@ -247,7 +247,6 @@ function generateQuestion(match, type, diff = '') {
 
 function getTimeForDifficulty(match, type, diffi = '') {
     const aa = MATCH_MAP?.[match]?.[type]?.[diffi]?.time;
-    console.log(match, type, diffi, aa);
     return aa;
 }
 

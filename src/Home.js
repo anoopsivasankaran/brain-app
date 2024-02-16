@@ -16,12 +16,9 @@ export default function Home() {
     const match = search.get('match');
 
     const allGames = getGame(match);
-    console.log(allGames);
     
     
     const [probType, setProbType] = useState();
-
-    console.log(probType);
 
     useState(() => {
         setProbType(Object.keys(allGames)[0])
