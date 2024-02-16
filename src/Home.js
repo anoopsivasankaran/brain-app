@@ -44,10 +44,10 @@ export default function Home() {
                 <h3>{getMatchTitle(match)}</h3>
             </div>
             <div className="home-header">
-                <Link to="results">
+                <Link to="/results">
                     <button> History </button>
                 </Link>
-                <Link to="table">
+                <Link to="/table">
                     <button> Badges </button>
                 </Link>
                 <Link className="home-button" to={`/`}>

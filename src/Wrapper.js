@@ -15,7 +15,12 @@ export default function Wrapper() {
                 {
                     pathname !== '/' && pathname !=='/home' && (
                         <button onClick={() => {
-                            setShowPopup(true)
+                            if(pathname === '/game') {
+                                setShowPopup(true)
+                            } else {
+                                navigate('..');
+                            }
+                            
                         }}> &#60; HOME</button>
                     )
                 }

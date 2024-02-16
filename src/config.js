@@ -108,11 +108,11 @@ const MATCH_MAP = {
             _ques: () => {
                 const num1 = getRandomInt(2, 9);
                 const num2 = getRandomInt(2, 9);
-                const rem = getRandomInt(0, num2);
+                const rem = getRandomInt(0, num2 - 1);
 
                 const operator = '\u00F7';
                 return {
-                    oper1: num1 * num2 + 2,
+                    oper1: num1 * num2 + rem,
                     oper2: num2,
                     operator,
                     exptedResult: num1,

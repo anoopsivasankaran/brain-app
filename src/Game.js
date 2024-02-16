@@ -19,6 +19,7 @@ export default function Game() {
     const prob = generateQuestion(match, probType, difficulty);
     const [problem, setProblem] = useState(prob);
     const [result, setResult] = useState('');
+    const [result2, setResult2] = useState('');
     const [allResult, setAllResult] = useState([]);
     const [error, setError] = useState(false);
     const [submitted, setSubmitted] = useState(false);
@@ -26,9 +27,17 @@ export default function Game() {
 
     const handleSubmit = useCallback(() => {
         const r1 = parseInt(result);
+        const r2 = parseInt(result2);
         setSubmitted(true)
-        setError(r1 !== problem.exptedResult)
-    }, [problem.exptedResult, result])
+        console.log(problem, result, result2);
+        let err;
+        if(Number.isInteger(problem.exptedResult2)) {
+            err = (r1 !== problem.exptedResult) || (r2 !== problem.exptedResult2)
+        } else {
+            err = r1 !== problem.exptedResult
+        }
+        setError(err)
+    }, [problem, result, result2])
 
     useEffect(() => {
         ref.current.focus();
@@ -70,7 +79,7 @@ export default function Game() {
     console.log(timeout);
    
     return (
-        <div className="Game">
+        <div className={`Game ${probType}`}>
             <div>
             <h3>{`${getMatchTitle(match)} -> ${difficulty}`}</h3>
             </div>
@@ -79,21 +88,36 @@ export default function Game() {
             </div>
             <div className="top">
                 <label>{`${problem.oper1} ${problem.operator} ${problem.oper2}`}</label>
-                <div>
-                <input
-                    readOnly={submitted}
-                    ref={ref}
-                    type="number"
-                    value={result}
-                    onChange={(evt) => {
-                        setResult(evt.target.value)
-                    }}
-                    onKeyUp={(e) => {
-                        if (e.key === "Enter") {
-                            handleSubmit();
-                        }
-                    }}
-                />
+                <div className="input-group">
+                    <input
+                        readOnly={submitted}
+                        ref={ref}
+                        type="number"
+                        value={result}
+                        onChange={(evt) => {
+                            setResult(evt.target.value)
+                        }}
+                        onKeyUp={(e) => {
+                            if (e.key === "Enter") {
+                                handleSubmit();
+                            }
+                        }}
+                    />
+                    <input
+                        className="second-input"
+                        placeholder="Rem"
+                        readOnly={submitted}
+                        type="number"
+                        value={result2}
+                        onChange={(evt) => {
+                            setResult2(evt.target.value)
+                        }}
+                        onKeyUp={(e) => {
+                            if (e.key === "Enter") {
+                                handleSubmit();
+                            }
+                        }}
+                    />
                 </div>
 
             </div>
@@ -113,7 +137,7 @@ export default function Game() {
                     <div className="result">
                         {
                             error ? (
-                                <div className="error">Its wrong :( Correct answer is {problem.exptedResult} </div>
+                                <div className="error">Its wrong :( Correct answer is {problem.exptedResult} <label>{Number.isInteger(problem.exptedResult2) && `& ${problem.exptedResult2}`}</label></div>
                             ) : (
                                 <div className="success"> Correct ! </div>
                             )
@@ -126,6 +150,7 @@ export default function Game() {
                                 const prob = generateQuestion(match, probType, difficulty);
                                 setProblem(prob);
                                 setResult('');
+                                setResult2('');
                                 setTimeout(timeoutDiff);
                                 ref.current.focus();
                                 

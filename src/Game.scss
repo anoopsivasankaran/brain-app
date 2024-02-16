@@ -59,4 +59,20 @@
         color: grey;
         padding: 5px;
     }
+    .input-group {
+        display: grid;
+        gap: 16px;
+        .second-input {
+            background: lightyellow;
+            display: none;
+            
+        }
+    }
+
+    &.div {
+        .second-input {
+            display: block;
+            
+        }
+    }
 }
