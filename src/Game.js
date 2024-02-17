@@ -29,12 +29,7 @@ export default function Game() {
         const r1 = parseInt(result);
         const r2 = parseInt(result2);
         setSubmitted(true)
-        let err;
-        if(Number.isInteger(problem.exptedResult2)) {
-            err = (r1 !== problem.exptedResult) || (r2 !== problem.exptedResult2)
-        } else {
-            err = r1 !== problem.exptedResult
-        }
+        let err = problem.getError(r1, r2);
         setError(err)
     }, [problem, result, result2])
 
@@ -134,7 +129,7 @@ export default function Game() {
                     <div className="result">
                         {
                             error ? (
-                                <div className="error">Its wrong :( Correct answer is {problem.exptedResult} <label>{Number.isInteger(problem.exptedResult2) && `& ${problem.exptedResult2}`}</label></div>
+                                <div className="error">Its wrong :( Correct answer is {error} </div>
                             ) : (
                                 <div className="success"> Correct ! </div>
                             )
@@ -143,7 +138,8 @@ export default function Game() {
                             <button onClick={() => {
                                 setSubmitted(false);
                                 const r1 = parseInt(result);
-                                setAllResult([...allResult, {...problem, result: r1}])
+                                const r2 = parseInt(result2);
+                                setAllResult([...allResult, {...problem, result: r1, result2: r2}])
                                 const prob = generateQuestion(match, probType, difficulty);
                                 setProblem(prob);
                                 setResult('');

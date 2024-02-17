@@ -10,6 +10,20 @@ function getRandomInt(min, max) {
 const BADGES = ['poop', 'stone', 'silver', 'gold', 'dimond'];
 const [POOP, STONE, SILVER, GOLD, DIMOND] = BADGES;
 
+function getErrorVal(expected) {
+    return (val) => {
+        const isSuccess = val === expected;
+        return isSuccess ? null : expected;
+    }
+}
+
+function getErrorValTwo(expected1, expected2) {
+    return (val1, val2) => {
+        const isSuccess = (val1 === expected1 && val2 === expected2);
+        return isSuccess ? null : `${expected1} & ${expected2}`;
+    }
+}
+
 
 const MATCH_MAP = {
     match1: {
@@ -35,13 +49,16 @@ const MATCH_MAP = {
                 const oper1 = getRandomInt(3, 9);
                 const oper2 = getRandomInt(5, 9);
                 const operator = '+';
+                const exptedResult = oper1 + oper2;
                 return {
                     oper1,
                     oper2,
                     operator,
-                    exptedResult: oper1 + oper2
+                    exptedResult,
+                    getError: getErrorVal(exptedResult)
                 }
             },
+           
         },
         sub: {
             easy: {
@@ -62,12 +79,14 @@ const MATCH_MAP = {
                 const oper1 = Math.max(val1, val2);
                 const oper2 = Math.min(val1, val2);
                 const operator = '-';
+                const exptedResult = oper1 - oper2;
 
                 return {
                     oper1,
                     oper2,
                     operator,
-                    exptedResult: oper1 - oper2
+                    exptedResult: exptedResult,
+                    getError: getErrorVal(exptedResult)
                 }
             },
         },
@@ -88,11 +107,13 @@ const MATCH_MAP = {
                 const oper1 = getRandomInt(2, 9);
                 const oper2 = getRandomInt(4, 9);
                 const operator = 'X';
+                const exptedResult = oper1 * oper2;
                 return {
                     oper1,
                     oper2,
                     operator,
-                    exptedResult: oper1 * oper2
+                    exptedResult,
+                    getError: getErrorVal(exptedResult)
                 }
             },
         },
@@ -121,6 +142,7 @@ const MATCH_MAP = {
                     operator,
                     exptedResult: num1,
                     exptedResult2: rem,
+                    getError: getErrorValTwo(num1, rem)
                 }
             },
         }
@@ -144,11 +166,13 @@ const MATCH_MAP = {
                 const oper1 = getRandomInt(1000, 10000);
                 const oper2 = getRandomInt(1000, 10000);
                 const operator = '+';
+                const exptedResult = oper1 + oper2;
                 return {
                     oper1,
                     oper2,
                     operator,
-                    exptedResult: oper1 + oper2
+                    exptedResult,
+                    getError: getErrorVal(exptedResult)
                 }
             },
     
@@ -166,12 +190,14 @@ const MATCH_MAP = {
                 const oper1 = Math.max(val1, val2);
                 const oper2 = Math.min(val1, val2);
                 const operator = '-';
+                const exptedResult = oper1 - oper2;
 
                 return {
                     oper1,
                     oper2,
                     operator,
-                    exptedResult: oper1 - oper2
+                    exptedResult,
+                    getError: getErrorVal(exptedResult)
                 }
             },
         },
@@ -186,11 +212,13 @@ const MATCH_MAP = {
                 const oper1 = getRandomInt(100, 1000);
                 const oper2 = getRandomInt(45, 99);
                 const operator = 'X';
+                const exptedResult = oper1 * oper2;
                 return {
                     oper1,
                     oper2,
                     operator,
-                    exptedResult: oper1 * oper2
+                    exptedResult,
+                    getError: getErrorVal(exptedResult)
                 }
             },
         },
