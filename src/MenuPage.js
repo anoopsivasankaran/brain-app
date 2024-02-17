@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import './MenuPage.scss';
 import { getMenuItems } from './config';
+import grow from './audio/grow.m4a';
 
 export function MenuPage() {
     const menuItems = getMenuItems();
@@ -18,6 +19,9 @@ export function MenuPage() {
                     )
                 })
             }
+            <video controls autoplay name="media">
+                <source src={grow} type="audio/mp4" />
+            </video>
         </div>
     );
 }
