@@ -101,13 +101,13 @@ const MATCH_MAP = {
                 time: 0,
             },
             medium: {
-                time: 20
+                time: 60
             },
             hard: {
-                time: 10
+                time: 40
             },
             superhard: {
-                time: 5,
+                time: 20,
             },
             _ques: () => {
                 const num1 = getRandomInt(2, 9);
@@ -137,7 +137,7 @@ const MATCH_MAP = {
                 level: 2,
             },
             hard: {
-                time: 30,
+                time: 60,
                 level: 2,
             },
             _ques: () => {
