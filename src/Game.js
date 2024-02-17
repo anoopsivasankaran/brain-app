@@ -30,7 +30,7 @@ export default function Game() {
         const r2 = parseInt(result2);
         setSubmitted(true)
         let err = problem.getError(r1, r2);
-        setError(err)
+        setError(err[0])
     }, [problem, result, result2])
 
     useEffect(() => {

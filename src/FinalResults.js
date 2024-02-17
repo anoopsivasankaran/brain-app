@@ -6,7 +6,10 @@ import { useEffect } from "react";
 import { addItem } from "./utils";
 
 function getPercentCls(allResult = []) {
-    const correct = allResult.filter((item) => item.result === item.exptedResult);
+    console.log(allResult);
+    const correct = allResult.filter((item) => {
+        return !item.getError(item.result, item.result2);
+    });
     const percent = (correct.length / allResult.length) * 100;
     if(percent < 40) {
         return 'poop';
@@ -56,11 +59,11 @@ export default function FinalResults({allResult = [], difficulty, probType, matc
             </div>
             <div className="results">
                 {allResult.map((item, index) => {
-                    const error = item.result !== item.exptedResult;
-
+                    const error = item.getError(item.result, item.result2);
+                    console.log(error);
                     return (
-                        <div key={index} className={`result-item ${error ? 'error' : 'success'}`}>
-                            <label>{item.oper1} {item.operator} {item.oper2} = {isNaN(item.result)? 'Timeout': item.result}</label>
+                        <div key={index} className={`result-item ${!!error ? 'error' : 'success'}`}>
+                            <label>{item.oper1} {item.operator} {item.oper2} = {!error[1]? 'Timeout': `${error[1]} (Correct: ${error[0]})`}</label>
                         </div>
                     );
                 })}

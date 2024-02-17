@@ -13,14 +13,24 @@ const [POOP, STONE, SILVER, GOLD, DIMOND] = BADGES;
 function getErrorVal(expected) {
     return (val) => {
         const isSuccess = val === expected;
-        return isSuccess ? null : expected;
+        return isSuccess ? null : [expected, val];
     }
 }
 
 function getErrorValTwo(expected1, expected2) {
     return (val1, val2) => {
         const isSuccess = (val1 === expected1 && val2 === expected2);
-        return isSuccess ? null : `${expected1} & ${expected2}`;
+        if(isSuccess) {
+            return null;
+        } else {
+            let res = '';
+            if(!val1 || !val2) {
+                res = 'Timeout';
+            } else {
+                res = `${val1} & ${val2}`;
+            }
+            return isSuccess ? null : [`${expected1} & ${expected2}`, res];
+        }
     }
 }
 
