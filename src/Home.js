@@ -90,6 +90,11 @@ export default function Home() {
                                             return null
                                         })
                                     }
+                                    {
+                                        !badges && (
+                                            <label className="no-badge">No badges yet</label>
+                                        )
+                                    }
                                 </label>
                             </React.Fragment>
                         )
