@@ -5,8 +5,8 @@ import {
   } from "react-router-dom";
 import FinalResults from "./FinalResults";
 import { generateQuestion, getMatchTitle, getTimeForDifficulty } from "./config";
+import { getMatchCount } from "./config";
 
-const NUM_OF_QUES = 10;
 
 export default function Game() {
 
@@ -15,6 +15,7 @@ export default function Game() {
     const difficulty = search.get('difficulty');
     const match = search.get('match');
     const timeoutDiff = getTimeForDifficulty(match, probType, difficulty);
+    const matchNumbers = getMatchCount(match);
     const ref = useRef();
     const prob = generateQuestion(match, probType, difficulty);
     const [problem, setProblem] = useState(prob);
@@ -30,7 +31,7 @@ export default function Game() {
         const r2 = parseInt(result2);
         setSubmitted(true)
         let err = problem.getError(r1, r2);
-        setError(err[0])
+        setError(err ? err[0] :  null)
     }, [problem, result, result2])
 
     useEffect(() => {
@@ -62,7 +63,7 @@ export default function Game() {
         
      }, [handleSubmit, submitted, timeout]);
 
-    if(allResult.length >= NUM_OF_QUES) {
+    if(allResult.length >= matchNumbers) {
         return (
             <div>
                 <FinalResults allResult={allResult} difficulty={difficulty} probType={probType} match={match}/>
@@ -76,7 +77,7 @@ export default function Game() {
             <h3>{`${getMatchTitle(match)} -> ${difficulty}`}</h3>
             </div>
             <div className="info">
-                <label>Question {allResult.length + 1} out of {NUM_OF_QUES}</label>
+                <label>Question {allResult.length + 1} out of {matchNumbers}</label>
             </div>
             <div className="top">
                 <label>{`${problem.oper1} ${problem.operator} ${problem.oper2}`}</label>
