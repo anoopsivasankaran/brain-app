@@ -1,3 +1,5 @@
+import { groupBy, mapValues, pickBy } from "lodash";
+
 const KEY = 'result';
 
 function saveAll(obj) {
@@ -23,8 +25,36 @@ function getAll() {
     }
 }
 
+function getForMatch(match) {
+    const all = getAll();
+    const ret = pickBy(all, (item) => {
+        console.log(item);
+        if (match === 'match1') {
+            return item.match === 'match1' || !item.match;
+        } 
+        return  item.match === match;
+    });
+    console.log(match);
+    return ret;
+}
+
+function getBadgeCount(match, prob, diffi) {
+    const matchesObj = getForMatch(match);
+    const matchGroupBy = groupBy(matchesObj, 'probType');
+    const matchDiffGroupBy = mapValues(matchGroupBy, (val) => {
+        const newGrpup = groupBy(val, 'difficulty');
+        return mapValues(newGrpup, (item) => {
+            const val2 = groupBy(item, 'badge');
+            return mapValues(val2, item => item.length);
+        })
+    });
+    console.log(matchDiffGroupBy);
+    return matchDiffGroupBy;
+}
+
 export {
     addItem,
     getAll,
-    
+    getForMatch,
+    getBadgeCount
 }

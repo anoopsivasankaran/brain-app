@@ -7,6 +7,10 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+const BADGES = ['poop', 'stone', 'silver', 'gold', 'dimond'];
+const [POOP, STONE, SILVER, GOLD, DIMOND] = BADGES;
+
+
 const MATCH_MAP = {
     match1: {
         _info: {
@@ -257,5 +261,11 @@ export {
     getDifficulties,
     generateQuestion,
     getTimeForDifficulty,
-    getMatchTitle
+    getMatchTitle,
+    POOP,
+    STONE,
+    SILVER,
+    GOLD,
+    DIMOND,
+    BADGES
 }

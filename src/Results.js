@@ -1,8 +1,9 @@
 import { Badge } from "./Badge";
-import { getAll } from "./utils";
+import { getForMatch } from "./utils";
 import moment from 'moment';
 
 import './Results.scss';
+import { useSearchParams } from "react-router-dom";
 
 function dateDiff(startDate, endDate) {
 
@@ -12,7 +13,11 @@ function dateDiff(startDate, endDate) {
 }
 
 export default function Results() {
-    const results  = getAll();
+
+    const [ search ] = useSearchParams();
+    const match = search.get('match');
+
+    const results  = getForMatch(match);
     const keys = Object.keys(results).sort((a, b) => b - a);
     
     return (
