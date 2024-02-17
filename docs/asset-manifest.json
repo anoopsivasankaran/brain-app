@@ -1,18 +1,18 @@
 {
   "files": {
     "main.css": "/brain-app/static/css/main.bf0cf787.css",
-    "main.js": "/brain-app/static/js/main.2e27c24b.js",
+    "main.js": "/brain-app/static/js/main.034e4030.js",
     "static/js/592.070277ad.chunk.js": "/brain-app/static/js/592.070277ad.chunk.js",
     "static/media/badges.png": "/brain-app/static/media/badges.4dfeb6478b1ca07af15f.png",
     "static/media/scale.jpg": "/brain-app/static/media/scale.f550f1a18a4a81702203.jpg",
     "static/media/calc.jpg": "/brain-app/static/media/calc.efdc219717b6b17611fe.jpg",
     "index.html": "/brain-app/index.html",
     "main.bf0cf787.css.map": "/brain-app/static/css/main.bf0cf787.css.map",
-    "main.2e27c24b.js.map": "/brain-app/static/js/main.2e27c24b.js.map",
+    "main.034e4030.js.map": "/brain-app/static/js/main.034e4030.js.map",
     "592.070277ad.chunk.js.map": "/brain-app/static/js/592.070277ad.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.bf0cf787.css",
-    "static/js/main.2e27c24b.js"
+    "static/js/main.034e4030.js"
   ]
 }
