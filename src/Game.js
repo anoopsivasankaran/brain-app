@@ -80,7 +80,7 @@ export default function Game() {
                 <label>Question {allResult.length + 1} out of {matchNumbers}</label>
             </div>
             <div className="top">
-                <label>{`${problem.oper1} ${problem.operator} ${problem.oper2}`}</label>
+                <label>{problem.question}</label>
                 <div className="input-group">
                     <input
                         readOnly={submitted}

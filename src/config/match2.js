@@ -19,12 +19,9 @@ const match2 = {
         _ques: () => {
             const oper1 = getRandomInt(1000, 10000);
             const oper2 = getRandomInt(1000, 10000);
-            const operator = '+';
             const exptedResult = oper1 + oper2;
             return {
-                oper1,
-                oper2,
-                operator,
+                question: `${oper1} + ${oper2}`,
                 getError: getErrorVal(exptedResult)
             }
         },
@@ -42,13 +39,10 @@ const match2 = {
             const val2 = getRandomInt(1000, 10000);
             const oper1 = Math.max(val1, val2);
             const oper2 = Math.min(val1, val2);
-            const operator = '-';
             const exptedResult = oper1 - oper2;
 
             return {
-                oper1,
-                oper2,
-                operator,
+                question: `${oper1} - ${oper2}`,
                 getError: getErrorVal(exptedResult)
             }
         },
@@ -63,12 +57,9 @@ const match2 = {
         _ques: () => {
             const oper1 = getRandomInt(100, 1000);
             const oper2 = getRandomInt(45, 99);
-            const operator = 'X';
             const exptedResult = oper1 * oper2;
             return {
-                oper1,
-                oper2,
-                operator,
+                question: `${oper1} X ${oper2}`,
                 getError: getErrorVal(exptedResult)
             }
         },
