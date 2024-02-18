@@ -6,6 +6,9 @@
         padding: 16px 8px;
         border-radius: 4px;
         margin: 8px 0;
+        .Audio, .Image {
+            padding-bottom: 8px;
+        }
     }
     .success {
         
