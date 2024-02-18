@@ -2,22 +2,21 @@ import { getErrorValString, getRandomInt } from "./configFn";
 import bookImage from '../images/book.jpg';
 import Audio from "../Audio";
 import Image from "../Image";
-import brainImg from '../spelling-asset/brain.webp';
-import breatheAudio from '../spelling-asset/breathe.m4a';
-import growAudio from '../spelling-asset/grow.m4a';
+
+const BASE_URL = '/brain-app/spelling-asset/'
 
 const QUESTION = [
     {
-        src: brainImg,
+        src: BASE_URL + 'brain.webp',
         text: 'brain',
     },
     {
-        src: breatheAudio,
+        src: BASE_URL + 'breathe.m4a',
         text: 'breathe',
         isAudio: true
     },
     {
-        src: growAudio,
+        src: BASE_URL + 'grow.m4a',
         text: 'grow',
         isAudio: true
     }
