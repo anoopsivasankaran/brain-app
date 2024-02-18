@@ -13,6 +13,7 @@
     .header {
         position: sticky;
         top: 0;
+        z-index: 1;
     }
     .header, button {
         padding: 16px 16px;
