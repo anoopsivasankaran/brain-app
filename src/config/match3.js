@@ -2,25 +2,10 @@ import { getErrorValString, getRandomInt } from "./configFn";
 import bookImage from '../images/book.jpg';
 import Audio from "../Audio";
 import Image from "../Image";
+import QUESTION from './assets-info.json';
 
 const BASE_URL = '/brain-app/spelling-asset/'
 
-const QUESTION = [
-    {
-        src: BASE_URL + 'brain.webp',
-        text: 'brain',
-    },
-    {
-        src: BASE_URL + 'breathe.m4a',
-        text: 'breathe',
-        isAudio: true
-    },
-    {
-        src: BASE_URL + 'grow.m4a',
-        text: 'grow',
-        isAudio: true
-    }
-];
 
 
 const match3 = {
@@ -52,7 +37,7 @@ const match3 = {
             ques.selected = true;
 
             return {
-                question: (ques.isAudio ? <Audio src={ques.src}/> : <Image src={ques.src}/>),
+                question: (ques.isAudio ? <Audio src={BASE_URL + ques.src}/> : <Image src={BASE_URL + ques.src}/>),
                 getError: getErrorValString(ques.text)
             }
         },
