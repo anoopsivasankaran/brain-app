@@ -1,10 +1,9 @@
-import { getErrorValString, getRandomInt } from "./configFn";
+import { BASE_URL, getErrorValString, getRandomInt } from "./configFn";
 import bookImage from '../images/book.jpg';
 import Audio from "../Audio";
 import Image from "../Image";
 import QUESTION from './assets-info.json';
 
-const BASE_URL = '/brain-app/spelling-asset/'
 
 
 

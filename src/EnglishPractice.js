@@ -3,6 +3,7 @@ import './EnglishPractice.scss';
 import { QUESTION } from './config/match3';
 import Audio from './Audio';
 import Image from './Image';
+import { BASE_URL } from './config/configFn';
 export default function EnglishPractice() {
     return (
         <div className="EnglishPractice">
@@ -15,7 +16,7 @@ export default function EnglishPractice() {
                             </div>
                             <div>
                                 {
-                                    item.isAudio ? <Audio src={item.src} /> : <Image src={item.src} />
+                                    item.isAudio ? <Audio src={BASE_URL + item.src} /> : <Image src={BASE_URL + item.src} />
                                 }
                             </div>
                         </div>

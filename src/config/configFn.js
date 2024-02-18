@@ -1,4 +1,6 @@
 
+const BASE_URL = '/brain-app/spelling-asset/'
+
 function getErrorValTwo(expected1, expected2) {
     return (val1, val2) => {
         const isSuccess = (val1 === expected1 && val2 === expected2);
@@ -45,7 +47,8 @@ export {
     getErrorVal,
     getRandomInt,
     getErrorValTwo,
-    getErrorValString
+    getErrorValString,
+    BASE_URL
 }
 
 
