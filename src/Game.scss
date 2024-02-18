@@ -1,7 +1,7 @@
 .Game {
     .top {
         font-size: 30px;
-        display: flex;
+        display: grid;
         align-items: center;
         gap: 16px;
         border: 1px solid silver;
@@ -14,7 +14,7 @@
         input {
             font-size: 30px;
             padding-left: 10px;
-            width: 100px;
+            width: 200px;
             &:read-only {
                 background: rgb(220, 219, 219);
                 border: none;

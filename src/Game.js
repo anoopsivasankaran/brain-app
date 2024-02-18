@@ -27,10 +27,8 @@ export default function Game() {
     const [timeout, setTimeout] = useState(timeoutDiff);
 
     const handleSubmit = useCallback(() => {
-        const r1 = parseInt(result);
-        const r2 = parseInt(result2);
         setSubmitted(true)
-        let err = problem.getError(r1, r2);
+        let err = problem.getError(result, result2);
         setError(err ? err[0] :  null)
     }, [problem, result, result2])
 
@@ -80,12 +78,11 @@ export default function Game() {
                 <label>Question {allResult.length + 1} out of {matchNumbers}</label>
             </div>
             <div className="top">
-                <label>{problem.question}</label>
+                <label>{ problem.question }</label>
                 <div className="input-group">
                     <input
                         readOnly={submitted}
                         ref={ref}
-                        type="number"
                         value={result}
                         onChange={(evt) => {
                             setResult(evt.target.value)
@@ -100,7 +97,6 @@ export default function Game() {
                         className="second-input"
                         placeholder="Rem"
                         readOnly={submitted}
-                        type="number"
                         value={result2}
                         onChange={(evt) => {
                             setResult2(evt.target.value)
@@ -138,9 +134,7 @@ export default function Game() {
                         <div className="control">
                             <button onClick={() => {
                                 setSubmitted(false);
-                                const r1 = parseInt(result);
-                                const r2 = parseInt(result2);
-                                setAllResult([...allResult, {...problem, result: r1, result2: r2}])
+                                setAllResult([...allResult, {...problem, result, result2}])
                                 const prob = generateQuestion(match, probType, difficulty);
                                 setProblem(prob);
                                 setResult('');

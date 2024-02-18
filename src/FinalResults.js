@@ -60,6 +60,7 @@ export default function FinalResults({allResult = [], difficulty, probType, matc
             <div className="results">
                 {allResult.map((item, index) => {
                     const error = item.getError(item.result, item.result2);
+                    
                     console.log(error);
                     return (
                         <div key={index} className={`result-item ${!!error ? 'error' : 'success'}`}>

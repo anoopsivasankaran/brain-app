@@ -26,8 +26,17 @@ function getRandomInt(min, max) {
 
 function getErrorVal(expected) {
     return (val) => {
-        const isSuccess = val === expected;
-        return isSuccess ? null : [expected, val];
+        const resValue = parseInt(val);
+        const isSuccess = resValue === expected;
+        return isSuccess ? null : [expected, resValue];
+    }
+}
+
+function getErrorValString(expected) {
+    return (val) => {
+        const resValue = val.toLowerCase();
+        const isSuccess = resValue === expected;
+        return isSuccess ? null : [expected, resValue];
     }
 }
 
@@ -35,7 +44,8 @@ function getErrorVal(expected) {
 export {
     getErrorVal,
     getRandomInt,
-    getErrorValTwo
+    getErrorValTwo,
+    getErrorValString
 }
 
 

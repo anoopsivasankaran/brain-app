@@ -1,13 +1,15 @@
 
 import match1 from './match1';
 import match2 from './match2';
+import match3 from './match3';
 
 const BADGES = ['poop', 'stone', 'silver', 'gold', 'dimond'];
 const [POOP, STONE, SILVER, GOLD, DIMOND] = BADGES;
 
 const MATCH_MAP = {
     match1,
-    match2
+    match2,
+    match3
 }
 
 function getMatchInfo(matchName) {

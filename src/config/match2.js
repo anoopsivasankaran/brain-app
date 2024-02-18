@@ -10,18 +10,16 @@ const match2 = {
     add: {
         easy :{
             time: 0,
-            level: 2,
         },
         hard: {
             time: 60,
-            level: 2,
         },
         _ques: () => {
             const oper1 = getRandomInt(1000, 10000);
             const oper2 = getRandomInt(1000, 10000);
             const exptedResult = oper1 + oper2;
             return {
-                question: `${oper1} + ${oper2}`,
+                question: <div><label><br /> {oper1} + <br />{oper2} </label></div>,
                 getError: getErrorVal(exptedResult)
             }
         },
@@ -42,7 +40,7 @@ const match2 = {
             const exptedResult = oper1 - oper2;
 
             return {
-                question: `${oper1} - ${oper2}`,
+                question: <div><label><br /> {oper1} - <br />{oper2} </label></div>,
                 getError: getErrorVal(exptedResult)
             }
         },
@@ -59,7 +57,7 @@ const match2 = {
             const oper2 = getRandomInt(45, 99);
             const exptedResult = oper1 * oper2;
             return {
-                question: `${oper1} X ${oper2}`,
+                question: <div><label><br /> {oper1} X <br />{oper2} </label></div>,
                 getError: getErrorVal(exptedResult)
             }
         },
