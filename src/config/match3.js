@@ -12,7 +12,8 @@ const match3 = {
         name: 'English',
         numbers: Math.min(10, QUESTION.length),
         image: bookImage,
-        practiceUrl: '/practice'
+        practiceUrl: '/practice',
+        showMistakeLog: true
     },
     spelling: {
         easy :{

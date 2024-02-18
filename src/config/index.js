@@ -16,6 +16,10 @@ function getMatchInfo(matchName) {
     return MATCH_MAP[matchName]?._info;
 }
 
+function showMistakeLog(match) {
+    return getMatchInfo(match)?.showMistakeLog;
+}
+
 function getMatchTitle(matchName) {
     const info = getMatchInfo(matchName) || {};
     return info?.name;
@@ -90,6 +94,7 @@ export {
     getMatchTitle,
     getMatchCount,
     getMatchPracticeUrl,
+    showMistakeLog,
     POOP,
     STONE,
     SILVER,

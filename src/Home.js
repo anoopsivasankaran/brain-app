@@ -3,7 +3,7 @@ import './Home.scss';
 import {
     Link, useSearchParams,
   } from "react-router-dom";
-import { BADGES, getDifficulties, getGame, getMatchPracticeUrl, getMatchTitle } from "./config";
+import { BADGES, getDifficulties, getGame, getMatchPracticeUrl, getMatchTitle, showMistakeLog } from "./config";
 import getText from "./text";
 import { getBadgeCount } from "./utils";
 import { reverse } from "lodash";
@@ -48,6 +48,13 @@ export default function Home() {
                 <h3>{getMatchTitle(match)}</h3>
             </div>
             <div className="home-header">
+                {
+                    showMistakeLog(match) && (
+                        <Link to={`/log?match=${match}`}>
+                            <button> Log </button>
+                        </Link>
+                    )
+                }
                 <Link to={`/results?match=${match}`}>
                     <button> History </button>
                 </Link>

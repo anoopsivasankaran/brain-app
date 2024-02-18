@@ -42,6 +42,11 @@ function getAllErrorLog() {
     return getFromStorage(ERROR_LOG_KEY);
 }
 
+function getErrorLogsForMatch(match) {
+    const logs = getAllErrorLog();
+    return logs?.[match];
+}
+
 function getForMatch(match) {
     const all = getAll();
     const ret = pickBy(all, (item) => {
@@ -81,5 +86,7 @@ export {
     getAll,
     getForMatch,
     getBadgeCount,
-    saveErrorInfo
+    saveErrorInfo,
+    getAllErrorLog,
+    getErrorLogsForMatch
 }
