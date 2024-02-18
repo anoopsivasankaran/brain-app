@@ -28,7 +28,8 @@ const match3 = {
     _info: {
         name: 'English',
         numbers: Math.min(10, QUESTION.length),
-        image: bookImage
+        image: bookImage,
+        practiceUrl: '/practice'
     },
     spelling: {
         easy :{
@@ -38,6 +39,7 @@ const match3 = {
             time: 20,
         },
         _ques: () => {
+            console.log('HUHU');
             let filteredQuestion = QUESTION.filter(item => !item.selected);
             if(filteredQuestion.length === 0) {
                 QUESTION.forEach(item => item.selected = false);
@@ -60,3 +62,7 @@ const match3 = {
 }
 
 export default match3;
+
+export {
+    QUESTION
+}

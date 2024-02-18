@@ -17,14 +17,18 @@ export default function Game() {
     const timeoutDiff = getTimeForDifficulty(match, probType, difficulty);
     const matchNumbers = getMatchCount(match);
     const ref = useRef();
-    const prob = generateQuestion(match, probType, difficulty);
-    const [problem, setProblem] = useState(prob);
+    const [problem, setProblem] = useState({});
     const [result, setResult] = useState('');
     const [result2, setResult2] = useState('');
     const [allResult, setAllResult] = useState([]);
     const [error, setError] = useState(false);
     const [submitted, setSubmitted] = useState(false);
     const [timeout, setTimeout] = useState(timeoutDiff);
+
+    useState(() => {
+        const prob = generateQuestion(match, probType, difficulty);
+        setProblem(prob)
+    }, [match, probType, difficulty])
 
     const handleSubmit = useCallback(() => {
         setSubmitted(true)
@@ -60,6 +64,7 @@ export default function Game() {
         }
         
      }, [handleSubmit, submitted, timeout]);
+
 
     if(allResult.length >= matchNumbers) {
         return (

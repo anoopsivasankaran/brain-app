@@ -3,7 +3,7 @@ import './Home.scss';
 import {
     Link, useSearchParams,
   } from "react-router-dom";
-import { BADGES, getDifficulties, getGame, getMatchTitle } from "./config";
+import { BADGES, getDifficulties, getGame, getMatchPracticeUrl, getMatchTitle } from "./config";
 import getText from "./text";
 import { getBadgeCount } from "./utils";
 import { reverse } from "lodash";
@@ -40,6 +40,8 @@ export default function Home() {
 
     const badgeCount = getBadgeCount(match)
 
+    const practiceUrl = getMatchPracticeUrl(match);
+
     return (
         <div className="Home">
             <div>
@@ -53,6 +55,8 @@ export default function Home() {
                     <button> &lt; Home </button>
                 </Link>
             </div>
+
+           
             
             <div className="home-grid">
                 {
@@ -103,6 +107,16 @@ export default function Home() {
                
             
             </div>
+            {
+                practiceUrl && (
+                    <Link to={practiceUrl}>
+                        <div className="home-grid">
+                            Practice
+                        </div>
+                    </Link>
+                )
+            }
+            
             <Link to={`/game?match=${match}&prob-type=${probType}&difficulty=${difficulty}&time=${new Date().getTime()}`}>
                 <button>GO</button>
             </Link>

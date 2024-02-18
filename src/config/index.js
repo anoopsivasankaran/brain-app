@@ -21,6 +21,13 @@ function getMatchTitle(matchName) {
     return info?.name;
 }
 
+function getMatchPracticeUrl(match) {
+    const info = getMatchInfo(match) || {};
+    return info?.practiceUrl;
+}
+
+
+
 function getMatchCount(match) {
     const info = getMatchInfo(match) || {};
     return info?.numbers;
@@ -82,6 +89,7 @@ export {
     getTimeForDifficulty,
     getMatchTitle,
     getMatchCount,
+    getMatchPracticeUrl,
     POOP,
     STONE,
     SILVER,

@@ -9,6 +9,7 @@ import Wrapper from './Wrapper';
 import Results from './Results';
 import { Table } from './Table';
 import { MenuPage } from './MenuPage';
+import EnglishPractice from './EnglishPractice';
 
 //"homepage": "https://anoopsivasankaran.github.io/brain-app",
 const router = createHashRouter([
@@ -35,6 +36,10 @@ const router = createHashRouter([
             {
                 path: "/results",
                 element: <Results />
+            },
+            {
+                path: "/practice",
+                element: <EnglishPractice />
             }
         ]
     },
