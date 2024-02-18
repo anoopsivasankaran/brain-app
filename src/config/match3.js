@@ -37,7 +37,8 @@ const match3 = {
 
             return {
                 question: (ques.isAudio ? <Audio src={BASE_URL + ques.src}/> : <Image src={BASE_URL + ques.src}/>),
-                getError: getErrorValString(ques.text)
+                getError: getErrorValString(ques.text),
+                saveInfo: ques.text
             }
         },
 

@@ -1,9 +1,11 @@
-import { groupBy, mapValues, pickBy } from "lodash";
+import { get, groupBy, mapValues, pickBy, set } from "lodash";
 
 const KEY = 'result';
+const ERROR_LOG_KEY = 'result_error';
+const MAX_ERROR_INFO_COUNT = 5;
 
 function saveAll(obj) {
-    localStorage.setItem(KEY, JSON.stringify(obj));
+    saveToStorate(ERROR_LOG_KEY, obj);
 }
 
 function addItem(item) {
@@ -12,9 +14,12 @@ function addItem(item) {
     saveAll(obj);
     
 }
+function saveToStorate(key, obj) {
+    localStorage.setItem(key, JSON.stringify(obj));
+}
 
-function getAll() {
-    const val = localStorage.getItem(KEY);
+function getFromStorage(key) {
+    const val = localStorage.getItem(key);
     if(!val) {
         return {}
     }
@@ -23,6 +28,18 @@ function getAll() {
     } catch {
         return {}
     }
+}
+
+function getAll() {
+    return getFromStorage(KEY);
+}
+
+function saveAllErrorLog(obj) {
+    saveToStorate(ERROR_LOG_KEY, obj);
+}
+
+function getAllErrorLog() {
+    return getFromStorage(ERROR_LOG_KEY);
 }
 
 function getForMatch(match) {
@@ -49,9 +66,20 @@ function getBadgeCount(match, prob, diffi) {
     return matchDiffGroupBy;
 }
 
+function saveErrorInfo(match, game, ques, isSuccess) {
+    const errorLog = getAllErrorLog();
+    let arr = get(errorLog, [match, game, ques], []);
+    arr.push(isSuccess);
+    arr = arr.slice(0 - MAX_ERROR_INFO_COUNT);
+    const obj = set(errorLog, [match, game, ques], arr);
+    console.log(obj);
+    saveAllErrorLog(obj)
+}
+
 export {
     addItem,
     getAll,
     getForMatch,
-    getBadgeCount
+    getBadgeCount,
+    saveErrorInfo
 }

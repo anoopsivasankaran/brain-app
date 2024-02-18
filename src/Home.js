@@ -51,9 +51,6 @@ export default function Home() {
                 <Link to={`/results?match=${match}`}>
                     <button> History </button>
                 </Link>
-                <Link className="home-button" to={`/`}>
-                    <button> &lt; Home </button>
-                </Link>
             </div>
 
            

@@ -6,6 +6,7 @@ import {
 import FinalResults from "./FinalResults";
 import { generateQuestion, getMatchTitle, getTimeForDifficulty } from "./config";
 import { getMatchCount } from "./config";
+import { saveErrorInfo } from "./utils";
 
 
 export default function Game() {
@@ -33,8 +34,12 @@ export default function Game() {
     const handleSubmit = useCallback(() => {
         setSubmitted(true)
         let err = problem.getError(result, result2);
-        setError(err ? err[0] :  null)
-    }, [problem, result, result2])
+        const errStr = err ? err[0] :  null;
+        setError(errStr)
+        if(problem.saveInfo) {
+            saveErrorInfo(match, probType, problem.saveInfo, !errStr);
+        }
+    }, [match, problem, result, result2, probType])
 
     useEffect(() => {
         ref.current.focus();
