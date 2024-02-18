@@ -1,22 +1,19 @@
 {
   "files": {
     "main.css": "/brain-app/static/css/main.53b7aac9.css",
-    "main.js": "/brain-app/static/js/main.f82e7928.js",
+    "main.js": "/brain-app/static/js/main.8e77f24b.js",
     "static/js/592.070277ad.chunk.js": "/brain-app/static/js/592.070277ad.chunk.js",
     "static/media/badges.png": "/brain-app/static/media/badges.4dfeb6478b1ca07af15f.png",
     "static/media/scale.jpg": "/brain-app/static/media/scale.f550f1a18a4a81702203.jpg",
     "static/media/calc.jpg": "/brain-app/static/media/calc.efdc219717b6b17611fe.jpg",
     "static/media/book.jpg": "/brain-app/static/media/book.f3592a45a66843bc4e8e.jpg",
-    "static/media/brain.webp": "/brain-app/static/media/brain.1834ed2d84c627dcd888.webp",
-    "static/media/grow.m4a": "/brain-app/static/media/grow.0d2d3fc86bc834c8fbee.m4a",
-    "static/media/breathe.m4a": "/brain-app/static/media/breathe.c2c1e8345c9c968b0f55.m4a",
     "index.html": "/brain-app/index.html",
     "main.53b7aac9.css.map": "/brain-app/static/css/main.53b7aac9.css.map",
-    "main.f82e7928.js.map": "/brain-app/static/js/main.f82e7928.js.map",
+    "main.8e77f24b.js.map": "/brain-app/static/js/main.8e77f24b.js.map",
     "592.070277ad.chunk.js.map": "/brain-app/static/js/592.070277ad.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.53b7aac9.css",
-    "static/js/main.f82e7928.js"
+    "static/js/main.8e77f24b.js"
   ]
 }
