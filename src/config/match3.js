@@ -2,9 +2,9 @@ import { getErrorValString, getRandomInt } from "./configFn";
 import bookImage from '../images/book.jpg';
 import Audio from "../Audio";
 import Image from "../Image";
-import brainImg from '../images/brain.webp';
-import breatheAudio from '../audio/breathe.m4a';
-import growAudio from '../audio/grow.m4a';
+import brainImg from '../spelling-asset/brain.webp';
+import breatheAudio from '../spelling-asset/breathe.m4a';
+import growAudio from '../spelling-asset/grow.m4a';
 
 const QUESTION = [
     {
