@@ -5,7 +5,9 @@ export function Log() {
     const [ search ] = useSearchParams();
     const match = search.get('match');
     const logs = getErrorLogsForMatch(match);
-    console.log(logs);
+    if(!logs) {
+        return 'No Logs';
+    }
     return (
         <div className="Log">
             {

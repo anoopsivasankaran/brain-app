@@ -3,14 +3,12 @@ import bookImage from '../images/book.jpg';
 import Audio from "../Audio";
 import Image from "../Image";
 import QUESTION from './assets-info.json';
-
-
-
+import { getExcludedErrors } from "../utils";
 
 const match3 = {
     _info: {
         name: 'English',
-        numbers: Math.min(10, QUESTION.length),
+        numbers: 10,
         image: bookImage,
         practiceUrl: '/practice',
         showMistakeLog: true
@@ -23,14 +21,14 @@ const match3 = {
             time: 20,
         },
         _ques: () => {
-            console.log('HUHU');
-            let filteredQuestion = QUESTION.filter(item => !item.selected);
+            const excluded = getExcludedErrors('match3', 'spelling');
+            let filteredQuestion = QUESTION.filter(item => {
+                return !item.selected && excluded.indexOf(item.text) === -1;
+            });
             if(filteredQuestion.length === 0) {
                 QUESTION.forEach(item => item.selected = false);
                 filteredQuestion = QUESTION;
             }
-
-
 
             const index = getRandomInt(0, filteredQuestion.length - 1);
             const ques = filteredQuestion[index];

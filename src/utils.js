@@ -42,6 +42,17 @@ function getAllErrorLog() {
     return getFromStorage(ERROR_LOG_KEY);
 }
 
+function getExcludedErrors(match, game) {
+    const logs = getAllErrorLog();
+    const val = get(logs, [match, game]);
+    
+    const picked = pickBy(val, (value = []) => {
+        const lasts = value.slice(0 - MAX_ERROR_INFO_COUNT);
+        return lasts.every((item) => item);
+    });
+    return Object.keys(picked);
+}
+
 function getErrorLogsForMatch(match) {
     const logs = getAllErrorLog();
     return logs?.[match];
@@ -77,7 +88,6 @@ function saveErrorInfo(match, game, ques, isSuccess) {
     arr.push(isSuccess);
     arr = arr.slice(0 - MAX_ERROR_INFO_COUNT);
     const obj = set(errorLog, [match, game, ques], arr);
-    console.log(obj);
     saveAllErrorLog(obj)
 }
 
@@ -88,5 +98,6 @@ export {
     getBadgeCount,
     saveErrorInfo,
     getAllErrorLog,
-    getErrorLogsForMatch
+    getErrorLogsForMatch,
+    getExcludedErrors
 }
