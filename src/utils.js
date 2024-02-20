@@ -5,7 +5,7 @@ const ERROR_LOG_KEY = 'result_error';
 const MAX_ERROR_INFO_COUNT = 5;
 
 function saveAll(obj) {
-    saveToStorate(ERROR_LOG_KEY, obj);
+    saveToStorate(KEY, obj);
 }
 
 function addItem(item) {
