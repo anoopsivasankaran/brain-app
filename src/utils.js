@@ -47,8 +47,7 @@ function getExcludedErrors(match, game) {
     const val = get(logs, [match, game]);
     
     const picked = pickBy(val, (value = []) => {
-        const lasts = value.slice(0 - MAX_ERROR_INFO_COUNT);
-        return lasts.every((item) => item);
+        return value.length >=MAX_ERROR_INFO_COUNT &&  value.every((item) => item);
     });
     return Object.keys(picked);
 }
