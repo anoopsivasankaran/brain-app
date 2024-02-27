@@ -42,7 +42,7 @@ export function Log() {
                 })
             }
             <div>
-                <textarea rows={100} cols={40} value={JSON.stringify(getAllErrorLog())}></textarea>
+                {/* <textarea rows={100} cols={40} value={JSON.stringify(getAllErrorLog())}></textarea> */}
             </div>
         </div>
     );
