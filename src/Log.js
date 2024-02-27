@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router-dom';
 import './Log.scss';
-import { getAllErrorLog, getErrorLogsForMatch } from './utils';
+import { getErrorLogsForMatch } from './utils';
 export function Log() {
     const [ search ] = useSearchParams();
     const match = search.get('match');

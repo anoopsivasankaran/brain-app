@@ -2,7 +2,9 @@
 const BASE_URL = '/brain-app/spelling-asset/'
 
 function getErrorValTwo(expected1, expected2) {
-    return (val1, val2) => {
+    return (val1In, val2In) => {
+        const val1 = parseInt(val1In);
+        const val2 = parseInt(val2In);
         const isSuccess = (val1 === expected1 && val2 === expected2);
         if(isSuccess) {
             return null;
