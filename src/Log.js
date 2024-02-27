@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router-dom';
 import './Log.scss';
-import { getErrorLogsForMatch } from './utils';
+import { getAllErrorLog, getErrorLogsForMatch } from './utils';
 export function Log() {
     const [ search ] = useSearchParams();
     const match = search.get('match');
@@ -8,6 +8,7 @@ export function Log() {
     if(!logs) {
         return 'No Logs';
     }
+
     return (
         <div className="Log">
             {
@@ -40,6 +41,9 @@ export function Log() {
                     )
                 })
             }
+            <div>
+                <textarea rows={100} cols={40} value={JSON.stringify(getAllErrorLog())}></textarea>
+            </div>
         </div>
     );
 }
