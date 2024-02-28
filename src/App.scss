@@ -31,5 +31,12 @@
         border-radius: 4px;
         
     }
+    h3 {
+        margin: 0;
+    }
+
+    br:first-child {
+        display: none;
+    }
     
 }
