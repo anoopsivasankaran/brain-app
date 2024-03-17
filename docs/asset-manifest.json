@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/brain-app/static/css/main.f9b867af.css",
-    "main.js": "/brain-app/static/js/main.227fb3de.js",
+    "main.js": "/brain-app/static/js/main.af31c560.js",
     "static/js/592.070277ad.chunk.js": "/brain-app/static/js/592.070277ad.chunk.js",
     "static/media/badges.png": "/brain-app/static/media/badges.4dfeb6478b1ca07af15f.png",
     "static/media/scale.jpg": "/brain-app/static/media/scale.f550f1a18a4a81702203.jpg",
@@ -9,11 +9,11 @@
     "static/media/book.jpg": "/brain-app/static/media/book.f3592a45a66843bc4e8e.jpg",
     "index.html": "/brain-app/index.html",
     "main.f9b867af.css.map": "/brain-app/static/css/main.f9b867af.css.map",
-    "main.227fb3de.js.map": "/brain-app/static/js/main.227fb3de.js.map",
+    "main.af31c560.js.map": "/brain-app/static/js/main.af31c560.js.map",
     "592.070277ad.chunk.js.map": "/brain-app/static/js/592.070277ad.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f9b867af.css",
-    "static/js/main.227fb3de.js"
+    "static/js/main.af31c560.js"
   ]
 }
